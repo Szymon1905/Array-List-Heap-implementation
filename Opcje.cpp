@@ -229,6 +229,7 @@ void Opcje::opcje_kopca() {
         cout << "5 - Wyjście" << endl << endl;
         cout << "Wybór: ";
         cin >> wybor;
+        system("CLS");
 
         switch (wybor) {
             case 1:

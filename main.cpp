@@ -1,9 +1,9 @@
 #include <iostream>
-
 #include <Windows.h>
+#include "Opcje.h"
 using namespace std;
 
-#include "Opcje.h"
+
 //#include "TestyAutomatyczne.h"
 
 
@@ -33,7 +33,7 @@ int main() {
 
         //cout << "Automatyzować test? (t/n): ";
         //cin >> tn;
-        // TODO printf
+
         switch (opcja_poczatkowa) {
             default:
                 cout << "Błędny wybór!" << endl;
@@ -47,7 +47,7 @@ int main() {
 
             case 2:
                 cout <<"Lista dwukierunkowa" << endl;
-                opcja.opcje_listy();// TODO przerobic aby wywalić ElementListy.h
+                opcja.opcje_listy();
                 break;
 
             case 3:
@@ -57,8 +57,7 @@ int main() {
 
             case 4:
                 cout << "Drzewo czerwono-czarne" << endl;
-                //if (tn == "t") testyAutomatyczne.testDrzewa();
-                //else Opcje.testDrzewa();
+                //Opcje.testDrzewa();
                 break;
 
             case 5:

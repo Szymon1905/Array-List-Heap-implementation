@@ -2,7 +2,7 @@
 #include "Tablica.h"
 
 using namespace std;
-
+// TODO refactor tablicy
 //Konstruktor inicjalizuje zmienne klasowe
 Tablica::Tablica() {
 

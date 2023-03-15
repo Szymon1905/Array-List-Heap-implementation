@@ -15,7 +15,7 @@ Kopiec::~Kopiec() {
     }
 
 }
-
+// TODO refactor kopca
 void Kopiec::dodaj(int wartosc) {
 
     //Wartości w kopcu nie mogą się powtarzać
@@ -80,11 +80,8 @@ void Kopiec::usun(int wartosc) {
             //Popraw kolejność elementów w tablicy kopca
             Kopiec::poprawStrukture();
             return;
-
         }
-
     }
-
 }
 
 bool Kopiec::sprawdzCzyIstnieje(int wartosc) {
@@ -100,7 +97,6 @@ bool Kopiec::sprawdzCzyIstnieje(int wartosc) {
     //Jeżeli wartość nie wystąpiła w żadnej iteracji tabeli zwróć false
     cout << "Szukana wartość nie występuje w kopcu" << endl;
     return false;
-
 }
 
 
