@@ -2,9 +2,8 @@
 #include "Testy.h"
 #include "Tablica.h"
 #include "Lista.h"
+#include "Kopiec.h"
 
-
-//#include "Kopiec.h"
 //#include "Drzewo.h"
 
 using namespace std;
@@ -18,7 +17,7 @@ void Testy::testTablicy() {
     int pozycja;
 
     while (true) {
-        cout << "Opcje:" << endl;
+        cout << "Opcje tablicy:" << endl;
         cout << "1 - Dodaj element na początek" << endl;
         cout << "2 - Dodaj element na koniec" << endl;
         cout << "3 - Dodaj element na wybraną pozycję" << endl;
@@ -122,7 +121,7 @@ void Testy::testListy() {
     int pozycja;
 
     while (true) {
-        cout << "Wybierz funkcję listy:" << endl;
+        cout << "Opcje listy:" << endl;
         cout << "1 - Dodaj na początek" << endl;
         cout << "2 - Dodaj na koniec" << endl;
         cout << "3 - Dodaj na na wybraną pozycję" << endl;
@@ -137,9 +136,6 @@ void Testy::testListy() {
         system("CLS");
 
         switch (wybor) {
-            default:
-                cout << "Błędny wybór!" << endl;
-                break;
 
             case 1:
                 cout << "Podaj wartość: ";
@@ -211,6 +207,70 @@ void Testy::testListy() {
 
             case 9:
                 return;
+
+            default:
+                cout << "Błędna opcja" << endl;
+                break;
+        }
+    }
+}
+
+void Testy::testKopca() {
+    Czas czas;
+    Kopiec kopiec;
+    int wybor;
+    int wartosc;
+    while (true) {
+        cout << "Opcje Kopca:" << endl;
+        cout << "1 - Dodaj" << endl;
+        cout << "2 - Usuń" << endl;
+        cout << "3 - Wyszukaj" << endl;
+        cout << "4 - Wypisz kopiec" << endl;
+        cout << "5 - Wyjście" << endl << endl;
+        cout << "Wybór: ";
+        cin >> wybor;
+
+        switch (wybor) {
+            case 1:
+                cout << "Podaj wartość: ";
+                cin >> wartosc;
+                czas.czasStart();
+                kopiec.dodaj(wartosc);
+                czas.czasStop();
+                czas.czasWykonania();
+                break;
+
+            case 2:
+                cout << "Podaj wartość: ";
+                cin >> wartosc;
+                czas.czasStart();
+                kopiec.usun(wartosc);
+                czas.czasStop();
+                czas.czasWykonania();
+                break;
+
+            case 3:
+                cout << "Podaj wartość: ";
+                cin >> wartosc;
+                czas.czasStart();
+                kopiec.sprawdzCzyIstnieje(wartosc);
+                czas.czasStop();
+                czas.czasWykonania();
+                break;
+
+            case 4:
+                czas.czasStart();
+                kopiec.wydrukujKopiec();
+                czas.czasStop();
+                czas.czasWykonania();
+                break;
+
+            case 5:
+                return;
+
+            default:
+                cout << "Błędna opcja" << endl;
+                break;
         }
     }
 }

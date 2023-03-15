@@ -53,8 +53,7 @@ int main() {
 
             case 3:
                 cout << "Kopiec binarny" << endl;
-                //if (tn == "t") testyAutomatyczne.testKopca();
-                //else Testy.testKopca();
+                testy.testKopca();
                 break;
 
             case 4:

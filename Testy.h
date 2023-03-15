@@ -14,7 +14,7 @@ public:
 
     void testListy();
 
-    //void testKopca();
+    void testKopca();
 
     //void testDrzewa();
 };
