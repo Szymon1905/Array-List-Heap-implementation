@@ -5,15 +5,15 @@
 using namespace std;
 using namespace std::chrono;
 
-void Czas::czasStart() {
+void Czas::Start() {
     start = high_resolution_clock::now();
 }
 
-void Czas::czasStop() {
+void Czas::Stop() {
     stop = high_resolution_clock::now();
 }
 
-void Czas::czasWykonania() {
+void Czas::Zmierzony_czas() {
     long zmierzony_czas = duration_cast<nanoseconds>(Czas::stop - Czas::start).count();
     cout << "Czas wykonania: " << zmierzony_czas << "ms" << endl;
 }

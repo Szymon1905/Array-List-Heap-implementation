@@ -3,7 +3,7 @@
 #include <Windows.h>
 using namespace std;
 
-#include "Testy.h"
+#include "Opcje.h"
 //#include "TestyAutomatyczne.h"
 
 
@@ -15,8 +15,8 @@ int main() {
 
     SetConsoleOutputCP(CP_UTF8);
 
-    int opcja;
-    Testy testy;
+    int opcja_poczatkowa;
+    Opcje opcja;
 
     // Menu
     while (true) {
@@ -27,39 +27,39 @@ int main() {
         cout << "4 - Drzewo Czerowno-Czarne" << endl;
         cout << "5 - Wyjście" << endl << endl;
         cout << "Wybór: ";
-        cin >> opcja;
+        cin >> opcja_poczatkowa;
         system("CLS");
 
 
         //cout << "Automatyzować test? (t/n): ";
         //cin >> tn;
         // TODO printf
-        switch (opcja) {
+        switch (opcja_poczatkowa) {
             default:
                 cout << "Błędny wybór!" << endl;
                 break;
 
             case 1:
                 cout << "Tablica dynamiczna" << endl;
-                testy.testTablicy();
-                //testyAutomatyczne.testTablicy();
+                opcja.opcja_tablica();
+                //testyAutomatyczne.opcja_tablica();
                 break;
 
             case 2:
                 cout <<"Lista dwukierunkowa" << endl;
-                testy.testListy();
-                //else Testy.testListy();
+                opcja.opcje_listy();
+                //else Opcje.opcje_listy();
                 break;
 
             case 3:
                 cout << "Kopiec binarny" << endl;
-                testy.testKopca();
+                opcja.opcje_kopca();
                 break;
 
             case 4:
                 cout << "Drzewo czerwono-czarne" << endl;
                 //if (tn == "t") testyAutomatyczne.testDrzewa();
-                //else Testy.testDrzewa();
+                //else Opcje.testDrzewa();
                 break;
 
             case 5:

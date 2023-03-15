@@ -6,15 +6,15 @@
 #ifndef PROJEKT_SDIZO_NR_1_SZYMON_BORZDYNSKI_TESTY_H
 #define PROJEKT_SDIZO_NR_1_SZYMON_BORZDYNSKI_TESTY_H
 
-class Testy {
+class Opcje {
 
 public:
 
-    void testTablicy();
+    void opcja_tablica();
 
-    void testListy();
+    void opcje_listy();
 
-    void testKopca();
+    void opcje_kopca();
 
     //void testDrzewa();
 };

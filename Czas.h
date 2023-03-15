@@ -13,11 +13,11 @@ public:
     high_resolution_clock::time_point start;
     high_resolution_clock::time_point stop;
 
-    void czasStart();
+    void Start();
 
-    void czasStop();
+    void Stop();
 
-    void czasWykonania();
+    void Zmierzony_czas();
 
 };
 

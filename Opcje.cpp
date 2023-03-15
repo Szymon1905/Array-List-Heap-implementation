@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Testy.h"
+#include "Opcje.h"
 #include "Tablica.h"
 #include "Lista.h"
 #include "Kopiec.h"
@@ -9,7 +9,7 @@
 using namespace std;
 
 
-void Testy::testTablicy() {
+void Opcje::opcja_tablica() {
     Czas czas;
     Tablica tablica;
     int wybor = NULL;
@@ -38,19 +38,19 @@ void Testy::testTablicy() {
 
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
-                czas.czasStart();
+                czas.Start();
                 tablica.dodaj_na_poczatek(wartosc);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 2:
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
-                czas.czasStart();
+                czas.Start();
                 tablica.dodaj_na_koniec(wartosc);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 3:
@@ -58,49 +58,49 @@ void Testy::testTablicy() {
                 cin >> wartosc;
                 cout << "Podaj pozycję: ";
                 cin >> pozycja;
-                czas.czasStart();
+                czas.Start();
                 tablica.dodaj_na_pozycje(wartosc, pozycja);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 4:
-                czas.czasStart();
+                czas.Start();
                 tablica.usun_pierwszy();
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 5:
-                czas.czasStart();
+                czas.Start();
                 tablica.usun_ostatni();
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 6:
                 cout << "Podaj pozycję: ";
                 cin >> pozycja;
-                czas.czasStart();
+                czas.Start();
                 tablica.usun_na_pozycji(pozycja);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 7:
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
-                czas.czasStart();
+                czas.Start();
                 tablica.znajdz_element(wartosc);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 8:
-                czas.czasStart();
+                czas.Start();
                 tablica.wypisz_tablice();
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 9:
@@ -113,7 +113,7 @@ void Testy::testTablicy() {
     }
 }
 
-void Testy::testListy() {
+void Opcje::opcje_listy() {
     Czas czas;
     Lista lista;
     int wybor;
@@ -140,19 +140,19 @@ void Testy::testListy() {
             case 1:
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
-                czas.czasStart();
+                czas.Start();
                 lista.dodaj_na_poczatek(wartosc);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 2:
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
-                czas.czasStart();
+                czas.Start();
                 lista.dodaj_na_koniec(wartosc);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 3:
@@ -160,49 +160,49 @@ void Testy::testListy() {
                 cin >> wartosc;
                 cout << "Podaj pozycję: ";
                 cin >> pozycja;
-                czas.czasStart();
+                czas.Start();
                 lista.dodaj_na_pozycje(wartosc, pozycja);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 4:
-                czas.czasStart();
+                czas.Start();
                 lista.usun_pierwszy();
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 5:
-                czas.czasStart();
+                czas.Start();
                 lista.usun_ostatni();
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 6:
                 cout << "Podaj pozycję: ";
                 cin >> pozycja;
-                czas.czasStart();
+                czas.Start();
                 lista.usun_na_pozycji(pozycja);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 7:
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
-                czas.czasStart();
+                czas.Start();
                 lista.znajdz_element(wartosc);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 8:
-                czas.czasStart();
+                czas.Start();
                 lista.wypisz_liste();
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 9:
@@ -215,7 +215,7 @@ void Testy::testListy() {
     }
 }
 
-void Testy::testKopca() {
+void Opcje::opcje_kopca() {
     Czas czas;
     Kopiec kopiec;
     int wybor;
@@ -234,35 +234,35 @@ void Testy::testKopca() {
             case 1:
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
-                czas.czasStart();
+                czas.Start();
                 kopiec.dodaj(wartosc);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 2:
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
-                czas.czasStart();
+                czas.Start();
                 kopiec.usun(wartosc);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 3:
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
-                czas.czasStart();
+                czas.Start();
                 kopiec.sprawdzCzyIstnieje(wartosc);
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 4:
-                czas.czasStart();
+                czas.Start();
                 kopiec.wydrukujKopiec();
-                czas.czasStop();
-                czas.czasWykonania();
+                czas.Stop();
+                czas.Zmierzony_czas();
                 break;
 
             case 5:
