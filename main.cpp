@@ -9,11 +9,13 @@ using namespace std;
 
 
 int main() {
+    SetConsoleOutputCP(CP_UTF8); // Konsola ustwiona na utf-8 aby były Polskie litery
     cout << "Autor: Szymon Borzdyński" << endl;
+
     //Inicjalizacja klasy testującej
     //TestyAutomatyczne testyAutomatyczne;
 
-    SetConsoleOutputCP(CP_UTF8);
+
 
     int opcja_poczatkowa;
     Opcje opcja;

@@ -12,7 +12,7 @@ using namespace std;
 void Opcje::opcja_tablica() {
     Czas czas;
     Tablica tablica;
-    int wybor = NULL;
+    int wybor;
     int wartosc;
     int pozycja;
 
