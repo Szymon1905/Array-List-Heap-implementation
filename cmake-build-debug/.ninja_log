@@ -1,12 +1,13 @@
 # ninja log v5
-27	3163	7006076668599486	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/main.cpp.obj	45ce42b5ec7df066
 17	1318	7006086294399502	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Tablica.cpp.obj	ccd3461bff35e7a4
-5	647	7006088885287340	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Lista.cpp.obj	5974fee3057198de
-733	1282	7006088891525135	Projekt_SDIZO_nr_1_Szymon_Borzdynski.exe	1fcc21e0ee3bf4b3
-1203	1985	7006076656826386	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Czas.cpp.obj	87e82315b751b6a0
+7	3299	7006156813253743	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/main.cpp.obj	45ce42b5ec7df066
 18	733	7006088886178030	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Testy.cpp.obj	3cafd8469737acee
-11	133	7006088880118735	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/ElementListy.cpp.obj	141fa7d5648a5e4
-2	375	7006100814555777	build.ninja	d4ebce2c32197ee3
-2	247	7006100814555777	build.ninja	d4ebce2c32197ee3
+32	1753	7006156797468440	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Czas.cpp.obj	87e82315b751b6a0
+577	1161	7006159843007060	Projekt_SDIZO_nr_1_Szymon_Borzdynski.exe	da72d8e67ea862f3
+6	576	7006159837240206	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Lista.cpp.obj	5974fee3057198de
+2	247	7006160383270097	build.ninja	d4ebce2c32197ee3
+1754	1908	7006156799324349	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/ElementListy.cpp.obj	141fa7d5648a5e4
 4	858	7006100824014375	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Kopiec.cpp.obj	1842b78906186ded
-10	2726	7006100842701978	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/main.cpp.obj	45ce42b5ec7df066
+10	664	7006159247449337	CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Opcje.cpp.obj	b8fff154f5fad601
+2	367	7006160383270097	build.ninja	d4ebce2c32197ee3
+7	962	7006160394001846	Projekt_SDIZO_nr_1_Szymon_Borzdynski.exe	a60522a2a5d8b621

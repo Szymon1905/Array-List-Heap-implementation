@@ -23,7 +23,7 @@ void Opcje::opcja_tablica() {
         cout << "3 - Dodaj element na wybraną pozycję" << endl;
         cout << "4 - Usuń element na początku" << endl;
         cout << "5 - Usuń element na końcu" << endl;
-        cout << "6 - Usuń element na wybranym miejscu" << endl;
+        cout << "6 - Usuń element na wybranej pozycji" << endl;
         cout << "7 - Wyszukaj element" << endl;
         cout << "8 - Wypisz tablicę" << endl;
         cout << "9 - Wyjście" << endl;
@@ -127,7 +127,7 @@ void Opcje::opcje_listy() {
         cout << "3 - Dodaj na na wybraną pozycję" << endl;
         cout << "4 - Usuń pierwszy" << endl;
         cout << "5 - Usuń ostatni" << endl;
-        cout << "6 - Usuń którykolwiek" << endl;
+        cout << "6 - Usuń element na wybranej pozycji" << endl;
         cout << "7 - Wyszukaj element" << endl;
         cout << "8 - Wydrukuj listę" << endl;
         cout << "9 - Wyjście" << endl << endl;
