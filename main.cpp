@@ -47,8 +47,7 @@ int main() {
 
             case 2:
                 cout <<"Lista dwukierunkowa" << endl;
-                opcja.opcje_listy();
-                //else Opcje.opcje_listy();
+                opcja.opcje_listy();// TODO przerobic aby wywalić ElementListy.h
                 break;
 
             case 3:
