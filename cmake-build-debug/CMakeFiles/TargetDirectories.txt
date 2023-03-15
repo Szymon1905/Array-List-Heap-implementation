@@ -1,0 +1,3 @@
+C:/Users/Dom/CLionProjects/Projekt SDIZO nr 1 Szymon Borzdynski/cmake-build-debug/CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir
+C:/Users/Dom/CLionProjects/Projekt SDIZO nr 1 Szymon Borzdynski/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Dom/CLionProjects/Projekt SDIZO nr 1 Szymon Borzdynski/cmake-build-debug/CMakeFiles/rebuild_cache.dir
