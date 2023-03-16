@@ -24,9 +24,9 @@ int main() {
     while (true) {
         cout << "Opcje:" << endl;
         cout << "1 - Tablica Dynamiczna" << endl;
-        cout << "2 - Lista dwukierunkowa" << endl;
+        cout << "2 - Lista Dwukierunkowa" << endl;
         cout << "3 - Kopiec Binarny" << endl;
-        cout << "4 - Drzewo Czerowno-Czarne" << endl;
+        cout << "4 - Drzewo Czerwono-Czarne" << endl;
         cout << "5 - Wyjście" << endl << endl;
         cout << "Wybór: ";
         cin >> opcja_poczatkowa;

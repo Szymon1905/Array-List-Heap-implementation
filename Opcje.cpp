@@ -32,7 +32,7 @@ void Opcje::opcja_tablica() {
         cout << "Wybór: ";
         cin >> wybor;
         system("CLS");
-        cout<<"Wybrano"<<wybor<<endl;
+        cout<<"Wybrano: "<<wybor<<endl;
         switch (wybor) {
             case 1:
 
@@ -131,7 +131,7 @@ void Opcje::opcje_listy() {
         cout << "7 - Wyszukaj element" << endl;
         cout << "8 - Wydrukuj listę" << endl;
         cout << "9 - Wyjście" << endl << endl;
-        cout << "Wybór: ";
+        cout << "Wybrano: ";
         cin >> wybor;
         system("CLS");
 
@@ -227,7 +227,7 @@ void Opcje::opcje_kopca() {
         cout << "3 - Wyszukaj" << endl;
         cout << "4 - Wypisz kopiec" << endl;
         cout << "5 - Wyjście" << endl << endl;
-        cout << "Wybór: ";
+        cout << "Wybrano: ";
         cin >> wybor;
         system("CLS");
 
