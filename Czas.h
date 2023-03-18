@@ -19,6 +19,7 @@ public:
 
     void Zmierzony_czas();
 
+    long czas_do_pliku();
 };
 
 

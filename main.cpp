@@ -26,8 +26,7 @@ int main() {
         cout << "1 - Tablica Dynamiczna" << endl;
         cout << "2 - Lista Dwukierunkowa" << endl;
         cout << "3 - Kopiec Binarny" << endl;
-        cout << "4 - Drzewo Czerwono-Czarne" << endl;
-        cout << "5 - Wyjście" << endl << endl;
+        cout << "4 - Wyjście" << endl << endl;
         cout << "Wybór: ";
         cin >> opcja_poczatkowa;
         system("CLS");
@@ -57,12 +56,8 @@ int main() {
                 opcja.opcje_kopca();
                 break;
 
-            case 4:
-                cout << "Drzewo czerwono-czarne" << endl;
-                //Opcje.testDrzewa();
-                break;
 
-            case 5:
+            case 4:
                 return 0;
         }
     }
