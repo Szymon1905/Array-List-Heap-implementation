@@ -28,7 +28,8 @@ int losuj(int rozmiar) {
     return randomNum;
 }
 
-// TODO elimninacja warning
+// TODO elimninacja plik
+
 void Testy::testTablicy() {
     srand(time(NULL));
     Czas czas;
@@ -272,7 +273,6 @@ void Testy::testListy(){
     }
     plikWyjsciowy.close();
 
-
     daneWyjsciowe = "usun_na_pozycji.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     plikWejsciowy.seekg(0, std::ios::beg);
@@ -445,7 +445,14 @@ void Testy::testKopca(){
 
 
 /*
+
+plikWejsciowy.close();
+chdir("..");
+return;
+// TODO remove
+
 switch (wybor) {
+
 
 
                 //Zamknij oba pliki

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Lista.h"
-
+#include <cmath>
 using namespace std;
 
 Lista::Lista() {
@@ -77,8 +77,6 @@ void Lista::dodaj_na_pozycje(int wartosc, int pozycja) {
         cout << "W liście nie istnieje pozycja [" << pozycja << "]" << endl;
         return;
     }
-
-
 
     //Sprawdź czy wybrana pozycja jest ostatnią
     if (pozycja == rozmiar - 1) {
@@ -189,7 +187,7 @@ void Lista::usun_na_pozycji(int pozycja) {
     }
 
     //Sprawdź w której połowie listy znajduje się wybrany element
-    if (pozycja < rozmiar / 2) {
+    if (pozycja < ceil(rozmiar / 2)) {
 
         //Przypisz za aktualny element pierwszy
         aktualnyElement = pierwszyElement;
