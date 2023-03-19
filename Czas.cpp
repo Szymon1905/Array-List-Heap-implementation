@@ -16,7 +16,7 @@ void Czas::Stop() {
 
 void Czas::Zmierzony_czas() {
     long zmierzony_czas = duration_cast<nanoseconds>(Czas::stop - Czas::start).count();
-    cout << "Czas wykonania: " << zmierzony_czas << "ms" << endl;
+    cout << "Czas wykonania: " << zmierzony_czas << "ns" << endl;
 }
 
 long Czas::czas_do_pliku() {

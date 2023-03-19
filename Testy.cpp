@@ -1,91 +1,291 @@
 #include <iostream>
 #include <fstream>
-#include "TestyAutomatyczne.h"
+#include <cstdlib> // for the system function
+#include <direct.h> // for mkdir and chdir on Windows
+#include <unistd.h> // for getcwd
 #include "Czas.h"
 #include "Tablica.h"
 #include "Lista.h"
 #include "Kopiec.h"
+#include "Testy.h"
 
 using namespace std;
 
-void TestyAutomatyczne::testTablicy() {
+// Każdy test dla 100 losowych wartości w przedziale 1-100
+
+void Testy::testTablicy() {
+    srand(time(NULL));
+    Czas czas;
+    Tablica tablica;
+    int wartosc;
+    string daneWyjsciowe = "wyjscie_Tablica.txt";
+    string daneWejsciowe = "wejscie_100.txt";
+    ofstream plikWyjsciowy;
+    ifstream plikWejsciowy;
+
+    plikWejsciowy.open(daneWejsciowe);
+
+
+    const char *folder = "Wyniki_tablicy";
+    _mkdir(folder);
+    _chdir(folder);
+
+    char sciezka_wyjscia[1024];
+    if (getcwd(sciezka_wyjscia, sizeof(sciezka_wyjscia)) != nullptr) {
+        cout << "Dane wyjściowe zapisano w: " << sciezka_wyjscia << '\n';
+    } else {
+        cerr << "Nie udało sie otworzyć ścieżki.\n";
+        return;
+    }
+
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+
+    if (plikWejsciowy.is_open()) {
+        cout << "Otwarto plik " << daneWejsciowe << endl;
+    } else {
+        cout << "Nie udało się otworzyć pliku wejściowego" << endl;
+        return;
+    }
+
+    if (plikWyjsciowy.is_open()) {
+        cout << "Otwarto plik " << daneWyjsciowe << endl;
+    } else {
+        cout << "Nie udało się otworzyć pliku wyjściowego" << endl;
+        return;
+    }
+
+    cout << "Uruchomiono Test tablicy " << endl;
+
+    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_poczotek.txt";
+    while (plikWejsciowy.good()) {
+        //Wczytaj wartość z pliku
+        plikWejsciowy >> wartosc;
+        //Wykonaj funkcję z pomiarem
+        czas.Start();
+        tablica.dodaj_na_poczatek(wartosc);
+        czas.Stop();
+        //Zapisz do pliku wynik pomiaru
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_koniec.txt";
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        tablica.dodaj_na_koniec(wartosc);
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_pozycje.txt";
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        tablica.dodaj_na_pozycje(wartosc, rand() % tablica.rozmiarTablicy);
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+    plikWyjsciowy = (basic_ofstream<char>) "usun_pierwszy.txt";
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+        tablica.dodaj_na_poczatek(wartosc);
+    }
+    while (plikWejsciowy.good()) {
+        //Wypełnia tablicę wartościami
+
+
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        tablica.usun_pierwszy();
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+    plikWyjsciowy = (basic_ofstream<char>) "usun_ostatni.txt";
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+        tablica.dodaj_na_poczatek(wartosc);
+    }
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        tablica.usun_ostatni();
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+    plikWyjsciowy = (basic_ofstream<char>) "usun_na_pozycji.txt";
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+        tablica.dodaj_na_poczatek(wartosc);
+    }
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        tablica.usun_na_pozycji(rand() % tablica.rozmiarTablicy);
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+
+    plikWejsciowy.close();
+    plikWyjsciowy.close();
+}
+void Testy::testListy(){
     srand(time(NULL));
     Czas czas;
     Tablica tablica;
     int wybor = 99;
     int wartosc;
     int pozycja;
-    string daneWyjsciowe;
-    string daneWejsciowe;
+    string daneWyjsciowe = "wyjscie_Tablica.txt";
+    string daneWejsciowe = "wejscie_100.txt";
     ofstream plikWyjsciowy;
     ifstream plikWejsciowy;
 
-    while (wybor != 0) {
-        cout << "Wybierz funkcję tablicy:" << endl;
-        cout << "    1. Dodaj na początek" << endl;
-        cout << "    2. Dodaj na koniec" << endl;
-        cout << "    3. Dodaj gdziekolwiek" << endl;
-        cout << "    4. Usuń pierwszy" << endl;
-        cout << "    5. Usuń ostatni" << endl;
-        cout << "    6. Usuń którykolwiek" << endl;
-        cout << "    7. Wyszukaj element" << endl;
-        cout << "    8. Wydrukuj tablicę" << endl;
-        cout << "    0. Wyjście" << endl << endl;
-        cout << "Wybór: ";
-        cin >> wybor;
-
-        //Zamknij, jeżeli wybrano 0
-        if (wybor == 0) return;
-
-        cout << "Plik zawierający dane wejściowe: ";
-        cin >> daneWejsciowe;
-        cout << "Plik z wynikami testu: ";
-        cin >> daneWyjsciowe;
+    plikWejsciowy.open(daneWejsciowe);
 
 
-        //Otwórz pliki
-        plikWejsciowy.open("/home/igor/SDiZO-Projekt/Input/" + daneWejsciowe);
-        plikWyjsciowy.open("/home/igor/SDiZO-Projekt/Output/Tablica/" + daneWyjsciowe, fstream::out);
-        //Sprawdż czy plik jest otwarty poprawnie
-        if (plikWejsciowy.is_open()) {
-            cout << "Otwarto plik " << daneWejsciowe << endl;
-        } else {
-            cout << "Nie udało się otworzyć pliku wejściowego!" << endl;
-            return;
-        }
+    const char *folder = "Wyniki_listy";
+    _mkdir(folder);
+    _chdir(folder);
 
-        if (plikWyjsciowy.is_open()) {
-            cout << "Otwarto plik " << daneWyjsciowe << endl;
-        } else {
-            cout << "Nie udało się otworzyć pliku wyjściowego!" << endl;
-            return;
-        }
+    char sciezka_wyjscia[1024];
+    if (getcwd(sciezka_wyjscia, sizeof(sciezka_wyjscia)) != nullptr) {
+        cout << "Dane wyjściowe zapisano w: " << sciezka_wyjscia << '\n';
+    } else {
+        cerr << "Nie udało sie otworzyć ścieżki.\n";
+        return;
+    }
 
-        switch (wybor) {
-            default:
-                cout << "Błędny wybór!" << endl;
-                break;
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
 
-            case 0:
-                return;
+    if (plikWejsciowy.is_open()) {
+        cout << "Otwarto plik " << daneWejsciowe << endl;
+    } else {
+        cout << "Nie udało się otworzyć pliku wejściowego" << endl;
+        return;
+    }
 
-            case 1:
-                cout << "Rozpoczynam test automatyczny...";
+    if (plikWyjsciowy.is_open()) {
+        cout << "Otwarto plik " << daneWyjsciowe << endl;
+    } else {
+        cout << "Nie udało się otworzyć pliku wyjściowego" << endl;
+        return;
+    }
 
-                while (plikWejsciowy.good()) {
-                    //Wczytaj wartość z pliku
-                    plikWejsciowy >> wartosc;
-                    //Wykonaj funkcję z pomiarem
-                    czas.Start();
-                    tablica.dodaj_na_poczatek(wartosc);
-                    czas.Stop();
-                    //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.czas_do_pliku() << endl;
-                }
+    cout << "Uruchomiono Test Listy " << endl;
+
+    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_poczotek.txt";
+    while (plikWejsciowy.good()) {
+        //Wczytaj wartość z pliku
+        plikWejsciowy >> wartosc;
+        //Wykonaj funkcję z pomiarem
+        czas.Start();
+        tablica.dodaj_na_poczatek(wartosc);
+        czas.Stop();
+        //Zapisz do pliku wynik pomiaru
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_koniec.txt";
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        tablica.dodaj_na_koniec(wartosc);
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_pozycje.txt";
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        tablica.dodaj_na_pozycje(wartosc, rand() % tablica.rozmiarTablicy);
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+    plikWyjsciowy = (basic_ofstream<char>) "usun_pierwszy.txt";
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+        tablica.dodaj_na_poczatek(wartosc);
+    }
+    while (plikWejsciowy.good()) {
+        //Wypełnia tablicę wartościami
+
+
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        tablica.usun_pierwszy();
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+    plikWyjsciowy = (basic_ofstream<char>) "usun_ostatni.txt";
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+        tablica.dodaj_na_poczatek(wartosc);
+    }
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        tablica.usun_ostatni();
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+    plikWyjsciowy = (basic_ofstream<char>) "usun_na_pozycji.txt";
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+        tablica.dodaj_na_poczatek(wartosc);
+    }
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        tablica.usun_na_pozycji(rand() % tablica.rozmiarTablicy);
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+
+
+    plikWejsciowy.close();
+    plikWyjsciowy.close();
+
+}
+
+void Testy::testKopca(){
+    cout << "Uruchomiono Test Kopca " << endl;
+
+}
+
+/*
+switch (wybor) {
+
 
                 //Zamknij oba pliki
-                plikWejsciowy.close();
-                plikWyjsciowy.close();
+
                 break;
 
             case 2:
@@ -217,10 +417,8 @@ void TestyAutomatyczne::testTablicy() {
                 break;
         }
 
-    }
-}
 
-void TestyAutomatyczne::testListy() {
+void Testy::testListy() {
     srand(time(NULL));
     Czas czas;
     Lista lista;
@@ -433,7 +631,7 @@ void TestyAutomatyczne::testListy() {
     }
 }
 
-void TestyAutomatyczne::testKopca() {
+void Testy::testKopca() {
     srand(time(NULL));
     Czas czas;
     Kopiec kopiec;
@@ -555,3 +753,5 @@ void TestyAutomatyczne::testKopca() {
 
     }
 }
+*/
+// Szymon Borzdyński 19.03.2023

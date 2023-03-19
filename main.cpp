@@ -1,7 +1,7 @@
 #include <iostream>
 #include <Windows.h>
 #include "Opcje.h"
-#include "TestyAutomatyczne.h"
+#include "Testy.h"
 
 using namespace std;
 
@@ -10,7 +10,7 @@ int main() {
     cout << "Autor: Szymon Borzdyński" << endl;
 
     //Inicjalizacja klasy testującej
-    TestyAutomatyczne testyAutomatyczne;
+    Testy testyAutomatyczne;
 
     int opcja_poczatkowa;
     Opcje opcja;

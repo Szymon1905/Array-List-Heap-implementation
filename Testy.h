@@ -1,4 +1,4 @@
-class TestyAutomatyczne {
+class Testy {
 
 public:
 
