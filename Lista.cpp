@@ -66,16 +66,19 @@ void Lista::dodaj_na_koniec(int wartosc) {
 
 void Lista::dodaj_na_pozycje(int wartosc, int pozycja) {
 
-    //Sprawdź czy w liście istnieje pozycja podana przez użytkownika
-    if (pozycja < 0 || pozycja > rozmiar) {
-        cout << "W liście nie istnieje pozycja [" << pozycja << "]" << endl;
-        return;
-    }
     //Sprawdź czy wybrana pozycja jest pierwszą
     if (pozycja == 0) {
         Lista::dodaj_na_poczatek(wartosc);
         return;
     }
+
+    //Sprawdź czy w liście istnieje pozycja podana przez użytkownika
+    if (pozycja < 0 || pozycja >= rozmiar) {
+        cout << "W liście nie istnieje pozycja [" << pozycja << "]" << endl;
+        return;
+    }
+
+
 
     //Sprawdź czy wybrana pozycja jest ostatnią
     if (pozycja == rozmiar - 1) {

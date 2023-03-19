@@ -31,9 +31,9 @@ public:
 
     void dodaj_na_poczatek(int wartosc);
 
-    void dodaj_na_pozycje(int wartosc, int pozycja);
-
     void dodaj_na_koniec(int wartosc);
+
+    void dodaj_na_pozycje(int wartosc, int pozycja);
 
     void wypisz_liste();
 

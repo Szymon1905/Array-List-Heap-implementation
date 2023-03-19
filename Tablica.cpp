@@ -151,8 +151,22 @@ void Tablica::usun_pierwszy() {
 void Tablica::usun_na_pozycji(int pozycja) {
 
     //Sprawdź, czy tablica nie jest pusta
+    if(rozmiar == 0){
+        cout << "Tablica jest pusta" << endl;
+        return;
+    }
+    if(rozmiar < 0){
+        cout << "Błędny rozmiar" << endl;
+        return;
+    }
+    if(pozycja >= rozmiar){
+        cout << "Błędny rozmiar" << endl;
+        return;
+    }
+
+
     //Sprawdż czy pozycja nie wykracza poza tablicę
-    if (rozmiar > 0 || pozycja > 0 || pozycja < rozmiar) {
+    if (rozmiar > 0 && pozycja >= 0 && pozycja < rozmiar) {
         //Zaalokuj pamięć na tablicę mniejszą o jeden element niż poprzednio
         int *nowyWskaznikNaHead = new int[rozmiar - 1];
 
@@ -176,8 +190,6 @@ void Tablica::usun_na_pozycji(int pozycja) {
     } else {
         cout << "W tablicy nie istnieje pozycja [" << pozycja << "]!" << endl;
     }
-
-
 }
 
 bool Tablica::znajdz_element(int wartosc) {

@@ -8,5 +8,4 @@ public:
 
     void testKopca();
 
-    void pobierz_sciezke_exe();
 };

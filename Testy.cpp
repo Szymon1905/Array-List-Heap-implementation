@@ -3,7 +3,7 @@
 #include <filesystem>
 #include <cstdlib> // for the system function
 #include <direct.h> // for mkdir and chdir on Windows
-#include <unistd.h> // for getcwd
+#include <random>
 #include "Czas.h"
 #include "Tablica.h"
 #include "Lista.h"
@@ -14,7 +14,21 @@ using namespace std;
 
 // Każdy test dla 100 losowych wartości w przedziale 1-100
 
+int losuj(int rozmiar) {
+    if (rozmiar == 0){
+        return 0;
+    }
 
+    random_device rd;
+    mt19937 gen(rd());
+
+    uniform_int_distribution<int> dist(0, rozmiar);
+    int randomNum = dist(gen);
+
+    return randomNum;
+}
+
+// TODO elimninacja warning
 void Testy::testTablicy() {
     srand(time(NULL));
     Czas czas;
@@ -155,7 +169,6 @@ void Testy::testTablicy() {
 }
 
 void Testy::testListy(){
-    srand(time(NULL));
     Czas czas;
     Lista lista;
     int wartosc;
@@ -210,12 +223,11 @@ void Testy::testListy(){
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     plikWejsciowy.seekg(0, std::ios::beg);
 
-    lista.dodaj_na_poczatek(0);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        lista.dodaj_na_pozycje(wartosc, rand() % lista.rozmiar);
+        lista.dodaj_na_pozycje(wartosc,0);
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
@@ -276,7 +288,7 @@ void Testy::testListy(){
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        lista.usun_na_pozycji(rand() % lista.rozmiar);
+        lista.usun_na_pozycji(losuj(lista.rozmiar));
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
@@ -430,6 +442,7 @@ void Testy::testKopca(){
 
     plikWejsciowy.close();
 }
+
 
 /*
 switch (wybor) {
@@ -904,5 +917,7 @@ void Testy::testKopca() {
 
     }
 }
+
+
 */
 // Szymon Borzdyński 19.03.2023

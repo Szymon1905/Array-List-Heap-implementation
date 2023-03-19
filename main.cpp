@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "Opcje.h"
 #include "Testy.h"
+#include "Lista.h"
 
 using namespace std;
 
@@ -76,8 +77,15 @@ int main() {
 
             case 5:
                 return 0;
+                // TODO wywalić case 6
             case 6:
-                testy.testListy();
+                Lista lista;
+                lista.dodaj_na_poczatek(10);
+                lista.dodaj_na_poczatek(11);
+                lista.dodaj_na_poczatek(12);
+                lista.dodaj_na_poczatek(13);
+                lista.dodaj_na_poczatek(14);
+                lista.usun_na_pozycji(2);
         }
     }
 }
