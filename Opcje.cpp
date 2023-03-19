@@ -220,6 +220,14 @@ void Opcje::opcje_kopca() {
     Kopiec kopiec;
     int wybor;
     int wartosc;
+
+    // TODO TEST
+    kopiec.dodaj(13);
+    kopiec.dodaj(11);
+    kopiec.dodaj(12);
+    kopiec.dodaj(14);
+    kopiec.dodaj(10);
+
     while (true) {
         cout << "Opcje Kopca:" << endl;
         cout << "1 - Dodaj" << endl;
