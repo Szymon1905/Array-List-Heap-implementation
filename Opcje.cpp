@@ -122,11 +122,11 @@ void Opcje::opcje_listy() {
 
     while (true) {
         cout << "Opcje listy:" << endl;
-        cout << "1 - Dodaj na początek" << endl;
-        cout << "2 - Dodaj na koniec" << endl;
-        cout << "3 - Dodaj na na wybraną pozycję" << endl;
-        cout << "4 - Usuń pierwszy" << endl;
-        cout << "5 - Usuń ostatni" << endl;
+        cout << "1 - Dodaj element na początek" << endl;
+        cout << "2 - Dodaj element na koniec" << endl;
+        cout << "3 - Dodaj element na na wybraną pozycję" << endl;
+        cout << "4 - Usuń pierwszy element" << endl;
+        cout << "5 - Usuń ostatni element" << endl;
         cout << "6 - Usuń element na wybranej pozycji" << endl;
         cout << "7 - Wyszukaj element" << endl;
         cout << "8 - Wydrukuj listę" << endl;
@@ -217,16 +217,10 @@ void Opcje::opcje_listy() {
 
 void Opcje::opcje_kopca() {
     Czas czas;
-    Kopiec kopiec;
+    Kopiec_binarny kopiec;
     int wybor;
     int wartosc;
 
-    // TODO TEST
-    kopiec.dodaj(13);
-    kopiec.dodaj(11);
-    kopiec.dodaj(12);
-    kopiec.dodaj(14);
-    kopiec.dodaj(10);
 
     while (true) {
         cout << "Opcje Kopca:" << endl;
@@ -253,7 +247,7 @@ void Opcje::opcje_kopca() {
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
                 czas.Start();
-                kopiec.usun(wartosc);
+                kopiec.usun_ze_szczytu();
                 czas.Stop();
                 czas.Zmierzony_czas();
                 break;
@@ -262,14 +256,14 @@ void Opcje::opcje_kopca() {
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
                 czas.Start();
-                kopiec.sprawdzCzyIstnieje(wartosc);
+                kopiec.czy_istnieje(wartosc);
                 czas.Stop();
                 czas.Zmierzony_czas();
                 break;
 
             case 4:
                 czas.Start();
-                kopiec.wydrukujKopiec();
+                kopiec.wypisz_kopiec();
                 czas.Stop();
                 czas.Zmierzony_czas();
                 break;

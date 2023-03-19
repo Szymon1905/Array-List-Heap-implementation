@@ -79,8 +79,8 @@ build CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Lista.cpp.obj: CXX_COM
   OBJECT_DIR = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir
   OBJECT_FILE_DIR = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir
 
-build CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Kopiec.cpp.obj: CXX_COMPILER__Projekt_SDIZO_nr_1_Szymon_Borzdynski_Debug C$:/Users/Dom/CLionProjects/Projekt$ SDIZO$ nr$ 1$ Szymon$ Borzdynski/Kopiec.cpp || cmake_object_order_depends_target_Projekt_SDIZO_nr_1_Szymon_Borzdynski
-  DEP_FILE = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir\Kopiec.cpp.obj.d
+build CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Stary_Kopiec.cpp.obj: CXX_COMPILER__Projekt_SDIZO_nr_1_Szymon_Borzdynski_Debug C$:/Users/Dom/CLionProjects/Projekt$ SDIZO$ nr$ 1$ Szymon$ Borzdynski/Stary_Kopiec.cpp || cmake_object_order_depends_target_Projekt_SDIZO_nr_1_Szymon_Borzdynski
+  DEP_FILE = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir\Stary_Kopiec.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir
   OBJECT_FILE_DIR = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir
@@ -91,8 +91,8 @@ build CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Testy.cpp.obj: CXX_COM
   OBJECT_DIR = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir
   OBJECT_FILE_DIR = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir
 
-build CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/heaper.cpp.obj: CXX_COMPILER__Projekt_SDIZO_nr_1_Szymon_Borzdynski_Debug C$:/Users/Dom/CLionProjects/Projekt$ SDIZO$ nr$ 1$ Szymon$ Borzdynski/heaper.cpp || cmake_object_order_depends_target_Projekt_SDIZO_nr_1_Szymon_Borzdynski
-  DEP_FILE = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir\heaper.cpp.obj.d
+build CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Kopiec.cpp.obj: CXX_COMPILER__Projekt_SDIZO_nr_1_Szymon_Borzdynski_Debug C$:/Users/Dom/CLionProjects/Projekt$ SDIZO$ nr$ 1$ Szymon$ Borzdynski/Kopiec.cpp || cmake_object_order_depends_target_Projekt_SDIZO_nr_1_Szymon_Borzdynski
+  DEP_FILE = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir\Kopiec.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir
   OBJECT_FILE_DIR = CMakeFiles\Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir
@@ -105,7 +105,7 @@ build CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/heaper.cpp.obj: CXX_CO
 #############################################
 # Link the executable Projekt_SDIZO_nr_1_Szymon_Borzdynski.exe
 
-build Projekt_SDIZO_nr_1_Szymon_Borzdynski.exe: CXX_EXECUTABLE_LINKER__Projekt_SDIZO_nr_1_Szymon_Borzdynski_Debug CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/main.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Czas.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Opcje.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Tablica.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Lista.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Kopiec.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Testy.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/heaper.cpp.obj
+build Projekt_SDIZO_nr_1_Szymon_Borzdynski.exe: CXX_EXECUTABLE_LINKER__Projekt_SDIZO_nr_1_Szymon_Borzdynski_Debug CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/main.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Czas.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Opcje.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Tablica.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Lista.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Stary_Kopiec.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Testy.cpp.obj CMakeFiles/Projekt_SDIZO_nr_1_Szymon_Borzdynski.dir/Kopiec.cpp.obj
   FLAGS = -g
   LINK_FLAGS = -static
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32

@@ -3,7 +3,7 @@
 #include "Opcje.h"
 #include "Testy.h"
 #include "Lista.h"
-#include "heaper.h"
+#include "Kopiec.h"
 
 using namespace std;
 
@@ -23,7 +23,7 @@ int main() {
         cout << "Opcje:" << endl;
         cout << "1 - Tablica Dynamiczna" << endl;
         cout << "2 - Lista Dwukierunkowa" << endl;
-        cout << "3 - Kopiec Binarny" << endl;
+        cout << "3 - Stary_Kopiec Binarny" << endl;
         cout << "4 - Testy" << endl;
         cout << "5 - Wyjście" << endl << endl;
         cout << "Wybór: ";
@@ -47,7 +47,7 @@ int main() {
                 break;
 
             case 3:
-                cout << "Kopiec binarny" << endl;
+                cout << "Stary_Kopiec binarny" << endl;
                 opcja.opcje_kopca();
                 break;
 
@@ -56,7 +56,7 @@ int main() {
                 cout << "Testy do pliku" << endl;
                 cout << "1 - Tablica Dynamiczna" << endl;
                 cout << "2 - Lista Dwukierunkowa" << endl;
-                cout << "3 - Kopiec Binarny" << endl;
+                cout << "3 - Stary_Kopiec Binarny" << endl;
                 cin >> opcja_testu;
                 switch (opcja_testu) {
                     case 1:
@@ -66,7 +66,8 @@ int main() {
                         testy.testListy();
                         continue;
                     case 3:
-                        // TODO manual check czy to działa
+                        // TODO sprawdzić czy to działa
+                        // update: Nie
                         testy.testKopca();
                         continue;
                     default:
@@ -76,38 +77,40 @@ int main() {
 
             case 5:
                 return 0;
+
                 // TODO wywalić case 6
             case 6:
-                BinaryHeap heap;
+                // Testy kocpa
+                Kopiec_binarny kopiecus;
 
-                heap.add(10);
-                heap.add(20);
-                heap.add(15);
-                heap.add(30);
-                heap.add(25);
-                heap.add(17);
-                heap.add(18);
-                heap.add(100);
-                heap.add(10);
-                heap.add(16);
+                kopiecus.dodaj(10);
+                kopiecus.dodaj(20);
+                kopiecus.dodaj(15);
+                kopiecus.dodaj(30);
+                kopiecus.dodaj(25);
+                kopiecus.dodaj(17);
+                kopiecus.dodaj(18);
+                kopiecus.dodaj(100);
+                kopiecus.dodaj(10);
+                kopiecus.dodaj(16);
 
-                heap.print_heap();
+                kopiecus.wypisz_kopiec();
 
-                heap.remove();
+                kopiecus.usun_ze_szczytu();
 
-                heap.print_heap();
+                kopiecus.wypisz_kopiec();
 
-                heap.remove();
+                kopiecus.usun_ze_szczytu();
 
-                heap.print_heap();
+                kopiecus.wypisz_kopiec();
 
-                heap.remove();
+                kopiecus.usun_ze_szczytu();
 
-                heap.print_heap();
+                kopiecus.wypisz_kopiec();
 
-                heap.remove();
+                kopiecus.usun_ze_szczytu();
 
-                heap.print_heap();
+                kopiecus.wypisz_kopiec();
 
                 return 0;
         }

@@ -21,8 +21,8 @@ Tablica::~Tablica() {
 
 void Tablica::dodaj_na_poczatek(int wartosc) {
 
-    //Zaalokuj pamięć na tablicę większa o jeden element niż poprzednio
-    //Przypisz podaną wartość jako pierwszy element tablicy
+    //Zaalokuj pamięć na tablicę większa o jeden inne_elementy niż poprzednio
+    //Przypisz podaną wartość jako pierwszy inne_elementy tablicy
     int *nowyWskaznikNaHead = new int[rozmiar + 1];
     nowyWskaznikNaHead[0] = wartosc;
 
@@ -43,8 +43,8 @@ void Tablica::dodaj_na_poczatek(int wartosc) {
 
 void Tablica::dodaj_na_koniec(int wartosc) {
 
-    //Zaalokuj pamięć na tablicę większa o jeden element niż poprzednio
-    //Przypisz podaną wartość jako ostatni element tablicy
+    //Zaalokuj pamięć na tablicę większa o jeden inne_elementy niż poprzednio
+    //Przypisz podaną wartość jako ostatni inne_elementy tablicy
     int *nowyWskaznikNaHead = new int[rozmiar + 1];
     nowyWskaznikNaHead[rozmiar] = wartosc;
 
@@ -70,8 +70,8 @@ void Tablica::dodaj_na_pozycje(int wartosc, int pozycja) {
         cout << "W tablicy nie istnieje pozycja [" << pozycja << "]!" << endl;
     } else {
 
-        //Zaalokuj pamięć na tablicę większa o jeden element niż poprzednio
-        //Przypisz podaną wartość jako element tablicy na wybranej pozycji
+        //Zaalokuj pamięć na tablicę większa o jeden inne_elementy niż poprzednio
+        //Przypisz podaną wartość jako inne_elementy tablicy na wybranej pozycji
         int *nowyWskaznikNaHead = new int[rozmiar + 1];
         nowyWskaznikNaHead[pozycja] = wartosc;
 
@@ -102,7 +102,7 @@ void Tablica::dodaj_na_pozycje(int wartosc, int pozycja) {
 void Tablica::usun_ostatni() {
     //Sprawdź, czy tablica nie jest pusta
     if (rozmiar > 0) {
-        //Zaalokuj pamięć na tablicę mniejszą o jeden element niż poprzednio
+        //Zaalokuj pamięć na tablicę mniejszą o jeden inne_elementy niż poprzednio
         int *nowyWskaznikNaHead = new int[rozmiar - 1];
 
         //Przepisz elementy starej tablicy poza ostatnim
@@ -127,7 +127,7 @@ void Tablica::usun_pierwszy() {
 
     //Sprawdź, czy tablica nie jest pusta
     if (rozmiar > 0) {
-        //Zaalokuj pamięć na tablicę mniejszą o jeden element niż poprzednio
+        //Zaalokuj pamięć na tablicę mniejszą o jeden inne_elementy niż poprzednio
         int *nowyWskaznikNaHead = new int[rozmiar - 1];
 
         //Przepisz elementy starej tablicy poza pierwszym
@@ -153,7 +153,7 @@ void Tablica::usun_na_pozycji(int pozycja) {
     //Sprawdź, czy tablica nie jest pusta
     //Sprawdż czy pozycja nie wykracza poza tablicę
     if (rozmiar > 0 || pozycja > 0 || pozycja < rozmiar) {
-        //Zaalokuj pamięć na tablicę mniejszą o jeden element niż poprzednio
+        //Zaalokuj pamięć na tablicę mniejszą o jeden inne_elementy niż poprzednio
         int *nowyWskaznikNaHead = new int[rozmiar - 1];
 
         //Przepisz elementy do wybranej pozycji

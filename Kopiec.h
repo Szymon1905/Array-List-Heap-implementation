@@ -1,25 +1,20 @@
+#include <vector>
+#include <iostream>
 
-class Kopiec {
+class Kopiec_binarny {
+    std::vector<int> kopiec;
+
 public:
-    int *tablica;
-    unsigned int rozmiar;
+    Kopiec_binarny() {}
 
-    Kopiec();
+    void heapify(int);
 
-    ~Kopiec();
+    int usun_ze_szczytu();
 
-    void dodaj(int);
+    void wypisz_kopiec();
 
-    void usun(int);
+    void dodaj(int value);
 
-    bool sprawdzCzyIstnieje(int);
+    bool czy_istnieje(int value);
 
-    void wydrukujKopiec();
-
-    void poprawStrukture();
-
-    bool czy_sie_powtarza(int);
 };
-
-
-

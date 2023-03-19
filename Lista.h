@@ -5,14 +5,14 @@
 
 using namespace std;
 
-class element{
+class inne_elementy{
 
 public:
-    element *nastepny;
-    element *poprzedni;
+    inne_elementy *nastepny;
+    inne_elementy *poprzedni;
     int wartosc;
 
-    element(int, element *, element *);
+    inne_elementy(int, inne_elementy *, inne_elementy *);
 };
 
 
@@ -27,9 +27,9 @@ public:
 
     ~Lista();
 
-    element *pierwszyElement;
-    element *ostatniElement;
-    element *aktualnyElement;
+    inne_elementy *pierwszyElement;
+    inne_elementy *ostatniElement;
+    inne_elementy *aktualnyElement;
 
     void dodaj_na_poczatek(int wartosc);
 

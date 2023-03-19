@@ -1,111 +1,67 @@
+#include <vector>
 #include <iostream>
 #include "Kopiec.h"
 
 using namespace std;
 
-Kopiec::Kopiec() {
-    Kopiec::tablica = NULL;
-    Kopiec::rozmiar = 0;
-}
+void Kopiec_binarny::heapify(int index) {
+    int left = index * 2 + 1;
+    int right = index * 2 + 2;
+    int largest = index;
 
-Kopiec::~Kopiec() {
-
-    if (Kopiec::rozmiar > 0) {
-        delete[]tablica;
+    if (left < kopiec.size() && kopiec[left] > kopiec[largest]) {
+        largest = left;
     }
 
-}
-// TODO refactor kopca
-void Kopiec::dodaj(int wartosc) {
-
-    //Wartości w kopcu nie mogą się powtarzać
-    //Kontynuuj tylko, jeżeli wartość nie istnieje jeszcze w kopcu
-    if (!Kopiec::sprawdzCzyIstnieje(wartosc)) {
-
-        //Stwórz nową tablicę większą o jeden element
-        int *nowaTablica = new int[rozmiar + 1];
-
-        //Przepisanie danych ze starej tablicy do nowej
-        for (int i = 0; i < rozmiar; i++) {
-            nowaTablica[i] = tablica[i];
-        }
-
-        //Dodanie wybranej wartości do kopca
-        nowaTablica[rozmiar] = wartosc;
-
-        //Usuń starą tablicę
-        delete[]tablica;
-
-        //Zastąp starą tablicę nową
-        tablica = nowaTablica;
-
-        //Popraw kolejność elementów w kopcu
-        Kopiec::poprawStrukture();
-
-        //Zwiększ rozmiar kopca
-        rozmiar++;
-
-
+    if (right < kopiec.size() && kopiec[right] > kopiec[largest]) {
+        largest = right;
     }
 
-}
-
-void Kopiec::usun(int wartosc) {
-
-    //Iteracja po całej tablicy kopca w elu znalezienia wartości
-    for (int i = 0; i < rozmiar; i++) {
-
-        if (tablica[i] == wartosc) {
-
-            //Stwórz nową tablicę, pomniejszoną o jeden element
-            int *nowaTablica = new int[rozmiar - 1];
-
-            //Przepisz elementy z tablicy do pozycji na której znajduje się usuwany element
-            for (int k = 0; k < i; k++) {
-                nowaTablica[k] = tablica[k];
-            }
-
-            //Przepisz pozostałe elementy przesunięte o jedną pozycję
-            for (int k = i + 1; k < rozmiar; k++) {
-                nowaTablica[k - 1] = tablica[k];
-            }
-
-            //usuń starą tablicę i przypisz na jej miejsce nową
-            delete[]tablica;
-            tablica = nowaTablica;
-
-            //Zmniejsz rozmiar tablicy
-            rozmiar--;
-
-            //Popraw kolejność elementów w tablicy kopca
-            Kopiec::poprawStrukture();
-            return;
-        }
+    if (largest != index) {
+        std::swap(kopiec[index], kopiec[largest]);
+        heapify(largest);
     }
 }
 
-bool Kopiec::sprawdzCzyIstnieje(int wartosc) {
 
-    //Przeszukaj tablicę pod kątem wartości
-    for (int i = 0; i < rozmiar; i++) {
-        //Jeżeli wartość wystąpi w iteracji zwróc true
-        if (tablica[i] == wartosc) {
-            cout << "Szukana wartość zajmuje w tablicy kopca pozycję [" << i << "]" << endl;
-            return true;
-        }
+
+void Kopiec_binarny::dodaj(int value) {
+    kopiec.push_back(value);
+
+    int index = kopiec.size() - 1;
+    int parent = (index - 1) / 2;
+
+    while (index > 0 && kopiec[parent] < kopiec[index]) {
+        std::swap(kopiec[parent], kopiec[index]);
+        index = parent;
+        parent = (index - 1) / 2;
     }
-    //Jeżeli wartość nie wystąpiła w żadnej iteracji tabeli zwróć false
-    cout << "Szukana wartość nie występuje w kopcu" << endl;
-    return false;
 }
 
-bool Kopiec::czy_sie_powtarza(int wartosc) {
+int Kopiec_binarny::usun_ze_szczytu() {
+    if (kopiec.empty()) {
+        std::cerr << "Heap is empty" << std::endl;
+        return -1;
+    }
 
-    //Przeszukaj tablicę pod kątem wartości
-    for (int i = 0; i < rozmiar; i++) {
-        //Jeżeli wartość wystąpi w iteracji zwróc true
-        if (tablica[i] == wartosc) {
+    int root = kopiec[0];
+    kopiec[0] = kopiec.back();
+    kopiec.pop_back();
+    heapify(0);
 
+    return root;
+}
+
+void Kopiec_binarny::wypisz_kopiec() {
+    for (int i = 0; i < kopiec.size(); ++i) {
+        std::cout << kopiec[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+bool Kopiec_binarny::czy_istnieje(int value) {
+    for (int i = 0; i < kopiec.size(); ++i) {
+        if (kopiec[i] == value) {
             return true;
         }
     }
@@ -113,34 +69,4 @@ bool Kopiec::czy_sie_powtarza(int wartosc) {
 }
 
 
-void Kopiec::wydrukujKopiec() {
-
-    cout << "Aktualny stan kopca:" << endl;
-    //Jeżeli tablica nie ma elementów, wyświetl komunikat
-    //W przeciwnym wypadku wydrukuj wszystkie elementy tablicy
-    if (tablica != NULL) {
-        for (int i = 0; i < rozmiar; i++) {
-            cout << "    [" << i << "] " << tablica[i] << endl;
-        }
-    } else {
-        cout << "    Tablica nie ma żadnych elementów" << endl;
-    }
-
-}
-
-void Kopiec::poprawStrukture() {
-
-    //Zmienna pomocnicza do pętli sortującej
-    int tymczasowa = 0;
-
-    //Pętla sortująca, układająca elementy kopca w odpowiedniej kolejności
-    //
-    for (int i = rozmiar; 0 < i; i--) {
-        if (tablica[i - 1] < tablica[i]) {
-            tymczasowa = tablica[i - 1];
-            tablica[i - 1] = tablica[i];
-            tablica[i] = tymczasowa;
-        }
-    }
-}
 
