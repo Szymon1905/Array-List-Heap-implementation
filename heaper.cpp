@@ -16,8 +16,8 @@ void BinaryHeap:: add(int value) {
     }
 }
 
-// Remove the specified element from the heap and return its value
-int BinaryHeap::remove(int value) {
+/*
+int BinaryHeap::remove2(int value) {
     int index = -1;
 
     // Find the index of the element to remove
@@ -62,7 +62,38 @@ int BinaryHeap::remove(int value) {
 
     return root;
 }
+*/
 
+int BinaryHeap::remove() {
+    if (heap.empty()) {
+        std::cerr << "Heap is empty" << std::endl;
+        return -1;
+    }
+
+    int root = heap[0];
+    heap[0] = heap.back();
+    heap.pop_back();
+
+    int index = 0;
+    while (index * 2 + 1 < heap.size()) {
+        int child1 = index * 2 + 1;
+        int child2 = index * 2 + 2;
+        int minChild = child1;
+
+        if (child2 < heap.size() && heap[child2] < heap[child1]) {
+            minChild = child2;
+        }
+
+        if (heap[minChild] < heap[index]) {
+            std::swap(heap[index], heap[minChild]);
+            index = minChild;
+        } else {
+            break;
+        }
+    }
+
+    return root;
+}
 // Print the current state of the heap
 void BinaryHeap::print_heap() {
     for (int i = 0; i < heap.size(); ++i) {

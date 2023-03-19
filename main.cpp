@@ -93,19 +93,19 @@ int main() {
 
                 heap.print_heap();
 
-                heap.remove(6);
+                heap.remove();
 
                 heap.print_heap();
 
-                heap.remove(1);
+                heap.remove();
 
                 heap.print_heap();
 
-                heap.remove(2);
+                heap.remove();
 
                 heap.print_heap();
 
-                heap.remove(9);
+                heap.remove();
 
                 heap.check_if_exists(7);
 

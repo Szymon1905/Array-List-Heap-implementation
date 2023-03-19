@@ -8,7 +8,7 @@ public:
 
     void add(int);
 
-    int remove(int);
+    int remove();
 
     void print_heap();
 

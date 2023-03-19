@@ -20,7 +20,7 @@ void Kopiec::dodaj(int wartosc) {
 
     //Wartości w kopcu nie mogą się powtarzać
     //Kontynuuj tylko, jeżeli wartość nie istnieje jeszcze w kopcu
-    if (!Kopiec::czy_sie_powtarza(wartosc)) {
+    if (!Kopiec::sprawdzCzyIstnieje(wartosc)) {
 
         //Stwórz nową tablicę większą o jeden element
         int *nowaTablica = new int[rozmiar + 1];
