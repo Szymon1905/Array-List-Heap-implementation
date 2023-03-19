@@ -5,20 +5,16 @@ class BinaryHeap {
     std::vector<int> heap;
 
 public:
+    BinaryHeap() {}
 
-    int parent(int i);
+    void heapify(int);
 
-    int left_child(int i);
-
-    int right_child(int i);
-
-    void heapify_down(int i);
-
-    int remove_top();
+    int remove();
 
     void print_heap();
 
     void add(int value);
 
-    BinaryHeap() {}
+    bool check_if_exists(int value);
+
 };

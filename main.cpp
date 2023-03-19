@@ -80,32 +80,32 @@ int main() {
             case 6:
                 BinaryHeap heap;
 
-                heap.add(3);
-                heap.add(2);
-                heap.add(1);
-                heap.add(5);
-                heap.add(4);
                 heap.add(10);
-                heap.add(9);
-                heap.add(8);
-                heap.add(6);
-                heap.add(7);
+                heap.add(20);
+                heap.add(15);
+                heap.add(30);
+                heap.add(25);
+                heap.add(17);
+                heap.add(18);
+                heap.add(100);
+                heap.add(10);
+                heap.add(16);
 
                 heap.print_heap();
 
-                heap.remove_top();
+                heap.remove();
 
                 heap.print_heap();
 
-                heap.remove_top();
+                heap.remove();
 
                 heap.print_heap();
 
-                heap.remove_top();
+                heap.remove();
 
                 heap.print_heap();
 
-                heap.remove_top();
+                heap.remove();
 
                 heap.print_heap();
 
