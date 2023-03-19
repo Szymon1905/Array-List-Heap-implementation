@@ -1,21 +1,16 @@
 #include <iostream>
 #include <Windows.h>
 #include "Opcje.h"
+#include "TestyAutomatyczne.h"
+
 using namespace std;
-
-
-//#include "TestyAutomatyczne.h"
-
-
 
 int main() {
     SetConsoleOutputCP(CP_UTF8); // Konsola ustwiona na utf-8 aby były Polskie litery
     cout << "Autor: Szymon Borzdyński" << endl;
 
     //Inicjalizacja klasy testującej
-    //TestyAutomatyczne testyAutomatyczne;
-
-
+    TestyAutomatyczne testyAutomatyczne;
 
     int opcja_poczatkowa;
     Opcje opcja;
@@ -26,7 +21,8 @@ int main() {
         cout << "1 - Tablica Dynamiczna" << endl;
         cout << "2 - Lista Dwukierunkowa" << endl;
         cout << "3 - Kopiec Binarny" << endl;
-        cout << "4 - Wyjście" << endl << endl;
+        cout << "4 - Testy" << endl;
+        cout << "5 - Wyjście" << endl << endl;
         cout << "Wybór: ";
         cin >> opcja_poczatkowa;
         system("CLS");
@@ -43,7 +39,6 @@ int main() {
             case 1:
                 cout << "Tablica dynamiczna" << endl;
                 opcja.opcja_tablica();
-                //testyAutomatyczne.opcja_tablica();
                 break;
 
             case 2:
@@ -56,8 +51,12 @@ int main() {
                 opcja.opcje_kopca();
                 break;
 
-
             case 4:
+                cout << "Testy do pliku" << endl;
+                testyAutomatyczne.testTablicy();
+                break;
+
+            case 5:
                 return 0;
         }
     }

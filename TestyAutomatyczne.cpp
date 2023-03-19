@@ -6,7 +6,6 @@
 #include "Lista.h"
 #include "Kopiec.h"
 
-
 using namespace std;
 
 void TestyAutomatyczne::testTablicy() {
@@ -78,10 +77,10 @@ void TestyAutomatyczne::testTablicy() {
                     plikWejsciowy >> wartosc;
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
-                    tablica.dodajNaPoczatek(wartosc);
+                    tablica.dodaj_na_poczatek(wartosc);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -97,10 +96,10 @@ void TestyAutomatyczne::testTablicy() {
                     plikWejsciowy >> wartosc;
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
-                    tablica.dodajNaKoniec(wartosc);
+                    tablica.dodaj_na_koniec(wartosc);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -116,10 +115,10 @@ void TestyAutomatyczne::testTablicy() {
                     plikWejsciowy >> wartosc;
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
-                    tablica.dodajGdziekolwiek(wartosc, rand() % tablica.rozmiarTablicy);
+                    tablica.dodaj_na_pozycje(wartosc, rand() % tablica.rozmiarTablicy);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -141,7 +140,7 @@ void TestyAutomatyczne::testTablicy() {
                     tablica.usun_pierwszy();
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -161,7 +160,7 @@ void TestyAutomatyczne::testTablicy() {
                     tablica.usun_ostatni();
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -181,7 +180,7 @@ void TestyAutomatyczne::testTablicy() {
                     tablica.usun_na_pozycji(rand() % tablica.rozmiarTablicy);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -202,7 +201,7 @@ void TestyAutomatyczne::testTablicy() {
                     tablica.znajdz_element(rand() % 2000000 - 1000000);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -214,7 +213,7 @@ void TestyAutomatyczne::testTablicy() {
                 czas.Start();
                 tablica.wypisz_tablice();
                 czas.Stop();
-                cout << "Czas wykonania: " << czas.Zmierzony_czas() << "ms" << endl;
+                cout << "Czas wykonania: " << czas.czas_do_pliku() << "ms" << endl;
                 break;
         }
 
@@ -289,7 +288,7 @@ void TestyAutomatyczne::testListy() {
                     plikWejsciowy >> wartosc;
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
-                    lista.dodajNaPoczatek(wartosc);
+                    lista.dodaj_na_poczatek(wartosc);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
                     plikWyjsciowy << czas.czas_do_pliku() << endl;
@@ -306,11 +305,11 @@ void TestyAutomatyczne::testListy() {
                     plikWejsciowy >> wartosc;
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
-                    lista.dodajNaKoniec(wartosc);
+                    lista.dodaj_na_koniec(wartosc);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
                     // TODO zmienić sposób zapisu
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -325,15 +324,15 @@ void TestyAutomatyczne::testListy() {
 
                     if (lista.rozmiar == 0) {
                         czas.Start();
-                        lista.dodajGdziekolwiek(wartosc, 0);
+                        lista.dodaj_na_pozycje(wartosc, 0);
                         czas.Stop();
                     } else {
                         czas.Start();
-                        lista.dodajGdziekolwiek(wartosc, 1);
+                        lista.dodaj_na_pozycje(wartosc, 1);
                         czas.Stop();
                     }
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -345,15 +344,15 @@ void TestyAutomatyczne::testListy() {
                 //Wypełnij tablicę wartościami
                 while (plikWejsciowy.good()) {
                     plikWejsciowy >> wartosc;
-                    lista.dodajNaPoczatek(wartosc);
+                    lista.dodaj_na_poczatek(wartosc);
                 }
                 while (lista.rozmiar != 0) {
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
-                    lista.usunPierwszy();
+                    lista.usun_pierwszy();
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -365,15 +364,15 @@ void TestyAutomatyczne::testListy() {
                 //Wypełnij tablicę wartościami
                 while (plikWejsciowy.good()) {
                     plikWejsciowy >> wartosc;
-                    lista.dodajNaPoczatek(wartosc);
+                    lista.dodaj_na_poczatek(wartosc);
                 }
                 while (lista.rozmiar != 0) {
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
-                    lista.usunOstatni();
+                    lista.usun_ostatni();
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -385,15 +384,15 @@ void TestyAutomatyczne::testListy() {
                 //Wypełnij tablicę wartościami
                 while (plikWejsciowy.good()) {
                     plikWejsciowy >> wartosc;
-                    lista.dodajNaPoczatek(wartosc);
+                    lista.dodaj_na_poczatek(wartosc);
                 }
                 while (lista.rozmiar != 0) {
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
-                    lista.usunKtorys(rand() % lista.rozmiar);
+                    lista.usun_na_pozycji(rand() % lista.rozmiar);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -405,16 +404,16 @@ void TestyAutomatyczne::testListy() {
                 //Wypełnij tablicę wartościami
                 while (plikWejsciowy.good()) {
                     plikWejsciowy >> wartosc;
-                    lista.dodajNaPoczatek(wartosc);
+                    lista.dodaj_na_poczatek(wartosc);
                 }
 
                 for (int i = 0; i < lista.rozmiar; i++) {
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
-                    lista.sprawdzCzyIstnieje(rand() % 2000000 - 1000000);
+                    lista.znajdz_element(rand() % 2000000 - 1000000);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -424,7 +423,7 @@ void TestyAutomatyczne::testListy() {
 
             case 8:
                 czas.Start();
-                lista.wydrukujListe();
+                lista.wypisz_liste();
                 czas.Stop();
                 czas.Zmierzony_czas();
                 break;
@@ -499,7 +498,7 @@ void TestyAutomatyczne::testKopca() {
                     kopiec.dodaj(wartosc);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -517,7 +516,7 @@ void TestyAutomatyczne::testKopca() {
                     kopiec.usun(wartosc);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
@@ -538,7 +537,7 @@ void TestyAutomatyczne::testKopca() {
                     kopiec.sprawdzCzyIstnieje(rand() % 2000000 - 1000000);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
-                    plikWyjsciowy << czas.Zmierzony_czas() << endl;
+                    plikWyjsciowy << czas.czas_do_pliku() << endl;
                 }
 
                 //Zamknij oba pliki
