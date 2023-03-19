@@ -276,9 +276,6 @@ void Testy::testListy(){
     daneWyjsciowe = "usun_na_pozycji.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     plikWejsciowy.seekg(0, std::ios::beg);
-
-    lista.dodaj_na_poczatek(0);
-    lista.dodaj_na_poczatek(1);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
         lista.dodaj_na_poczatek(wartosc);
@@ -288,7 +285,7 @@ void Testy::testListy(){
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        lista.usun_na_pozycji(losuj(lista.rozmiar));
+        lista.usun_na_pozycji_test2(losuj(lista.rozmiar));
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;

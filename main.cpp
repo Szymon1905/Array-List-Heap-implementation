@@ -33,6 +33,7 @@ int main() {
         //cout << "Automatyzować test? (t/n): ";
         //cin >> tn;
 
+        /*
         Lista lista;
         lista.dodaj_na_poczatek(14);
         lista.dodaj_na_poczatek(13);
@@ -41,9 +42,9 @@ int main() {
         lista.dodaj_na_poczatek(10);
         lista.wypisz_liste();
         cout<<"*****"<<endl;
-        lista.usun_na_pozycji_test(5);
+        lista.usun_na_pozycji_test2(4);
         lista.wypisz_liste();
-        return 0;
+        */
 
         switch (opcja_poczatkowa) {
             default:
@@ -95,7 +96,3 @@ int main() {
         }
     }
 }
-
-// pass 0,1,4
-// fail 3
-// invalid value 2

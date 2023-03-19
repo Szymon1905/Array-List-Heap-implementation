@@ -27,7 +27,7 @@ void Lista::dodaj_na_poczatek(int wartosc) {
     //Sprawdź, czy istnieje element początkowy
     if (pierwszyElement == NULL) {
         //Utwórz nowy element i ustaw go jako element początkowy i końcowy
-        pierwszyElement = new ElementListy(wartosc, NULL, NULL);
+        pierwszyElement = new element(wartosc, NULL, NULL);
         ostatniElement = pierwszyElement;
 
     } else {
@@ -35,7 +35,7 @@ void Lista::dodaj_na_poczatek(int wartosc) {
         aktualnyElement = pierwszyElement;
         //Zastąp pierwszy element nowym
         //Ustaw jego wartość oraz element kolejny na element aktualny (były pierwszy)
-        pierwszyElement = new ElementListy(wartosc, aktualnyElement, NULL);
+        pierwszyElement = new element(wartosc, aktualnyElement, NULL);
         aktualnyElement->poprzedni = pierwszyElement;
 
     }
@@ -49,7 +49,7 @@ void Lista::dodaj_na_koniec(int wartosc) {
     //Sprawdź, czy istnieje element początkowy
     if (pierwszyElement == NULL) {
         //Utwórz nowy element i ustaw go jako element początkowy i końcowy
-        ostatniElement = new ElementListy(wartosc, NULL, NULL);
+        ostatniElement = new element(wartosc, NULL, NULL);
         pierwszyElement = ostatniElement;
 
     } else {
@@ -57,7 +57,7 @@ void Lista::dodaj_na_koniec(int wartosc) {
         aktualnyElement = ostatniElement;
         //Zastąp ostatni element nowym
         //Ustaw jego wartość oraz element poprzedni na element aktualny (były ostatni)
-        ostatniElement = new ElementListy(wartosc, NULL, aktualnyElement);
+        ostatniElement = new element(wartosc, NULL, aktualnyElement);
         aktualnyElement->nastepny = ostatniElement;
     }
     //Zwiększ rozmiar listy o 1
@@ -108,8 +108,8 @@ void Lista::dodaj_na_pozycje(int wartosc, int pozycja) {
     }
 
     //Stwórz nowy element listy z podanymi parametrami
-    ElementListy *nowyElementListy = new ElementListy(wartosc, aktualnyElement,
-                                                      aktualnyElement->nastepny);
+    element *nowyElementListy = new element(wartosc, aktualnyElement,
+                                            aktualnyElement->nastepny);
 
     //przypisz nowy element w odpowiednim miejscu tablicy
     aktualnyElement->nastepny->poprzedni = nowyElementListy;
@@ -211,7 +211,7 @@ void Lista::usun_na_pozycji(int pozycja) {
     }
     cout<<"HERE 4"<<endl;
     //Stwórz nowy element listy z podanymi parametrami
-    ElementListy *nowyElementListy = aktualnyElement->nastepny;
+    element *nowyElementListy = aktualnyElement->nastepny;
 
     //przypisz nowy element w odpowiednim miejscu tablicy
     aktualnyElement->nastepny = nowyElementListy->nastepny;
@@ -237,7 +237,7 @@ void Lista::usun_na_pozycji_test(int pozycja) {
         usun_ostatni();
         return;
     }
-    ElementListy *poprzedniElement = nullptr;
+    element *poprzedniElement = nullptr;
     aktualnyElement = pierwszyElement;
     for (int i = 1; i < pozycja; i++) { // przesuwamy sie do elementu na pozycji do usuniecia
         poprzedniElement = aktualnyElement;
@@ -246,6 +246,38 @@ void Lista::usun_na_pozycji_test(int pozycja) {
     poprzedniElement->nastepny = aktualnyElement->nastepny; // usuwamy element ze srodkowej czesci listy
     aktualnyElement->nastepny->poprzedni = poprzedniElement;
     delete aktualnyElement;
+    rozmiar--;
+}
+
+void Lista::usun_na_pozycji_test2(int pozycja) {
+    if (pozycja < 0 || pozycja >= rozmiar) {
+        cout << "Niepoprawna pozycja" << endl;
+        return;
+    }
+
+    if (pozycja == 0) {
+        usun_pierwszy();
+        return;
+    }
+
+    if (pozycja == rozmiar - 1) {
+        usun_ostatni();
+        return;
+    }
+
+    int i = 0;
+    element *poprzedniElement = nullptr;
+    aktualnyElement = pierwszyElement;
+
+    while (i < pozycja) {
+        poprzedniElement = aktualnyElement;
+        aktualnyElement = aktualnyElement->nastepny;
+        i++;
+    }
+
+    poprzedniElement->nastepny = aktualnyElement->nastepny;
+    delete aktualnyElement;
+    aktualnyElement = nullptr;
     rozmiar--;
 }
 
@@ -293,10 +325,11 @@ void Lista::wypisz_liste() {
     }
 }
 
-ElementListy::ElementListy(int wartosc, ElementListy *nastepny, ElementListy *poprzedni) {
+// TODO co z tym
+element::element(int wartosc, element *nastepny, element *poprzedni) {
 
-    ElementListy::wartosc = wartosc;
-    ElementListy::nastepny = nastepny;
-    ElementListy::poprzedni = poprzedni;
+    element::wartosc = wartosc;
+    element::nastepny = nastepny;
+    element::poprzedni = poprzedni;
 
 }

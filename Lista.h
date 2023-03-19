@@ -5,15 +5,17 @@
 
 using namespace std;
 
-class ElementListy{
+class element{
 
 public:
-    ElementListy *nastepny;
-    ElementListy *poprzedni;
+    element *nastepny;
+    element *poprzedni;
     int wartosc;
 
-    ElementListy(int, ElementListy *, ElementListy *);
+    element(int, element *, element *);
 };
+
+
 
 class Lista {
 
@@ -25,9 +27,9 @@ public:
 
     ~Lista();
 
-    ElementListy *pierwszyElement;
-    ElementListy *ostatniElement;
-    ElementListy *aktualnyElement;
+    element *pierwszyElement;
+    element *ostatniElement;
+    element *aktualnyElement;
 
     void dodaj_na_poczatek(int wartosc);
 
@@ -44,6 +46,8 @@ public:
     void usun_na_pozycji(int);
 
     void usun_na_pozycji_test(int);
+
+    void usun_na_pozycji_test2(int);
 
     bool znajdz_element(int wartosc);
 };
