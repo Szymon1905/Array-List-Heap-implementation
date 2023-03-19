@@ -186,6 +186,8 @@ void Lista::usun_na_pozycji(int pozycja) {
         return;
     }
 
+    cout<<"TEST: "<<ceil(rozmiar / 2)<<endl;
+
     //Sprawdź w której połowie listy znajduje się wybrany element
     if (pozycja < ceil(rozmiar / 2)) {
 
@@ -196,6 +198,7 @@ void Lista::usun_na_pozycji(int pozycja) {
         for (int i = 1; i < pozycja - 1; ++i) {
             aktualnyElement = aktualnyElement->nastepny;
         }
+        cout<<"HERE"<<endl;
 
     } else {
 

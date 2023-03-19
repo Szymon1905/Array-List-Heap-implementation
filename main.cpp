@@ -85,7 +85,10 @@ int main() {
                 lista.dodaj_na_poczatek(12);
                 lista.dodaj_na_poczatek(13);
                 lista.dodaj_na_poczatek(14);
-                lista.usun_na_pozycji(2);
+                lista.wypisz_liste();
+                cout<<"*****"<<endl;
+                lista.usun_na_pozycji(3);
+                lista.wypisz_liste();
         }
     }
 }
