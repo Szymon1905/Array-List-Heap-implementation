@@ -20,7 +20,7 @@ void Kopiec::dodaj(int wartosc) {
 
     //Wartości w kopcu nie mogą się powtarzać
     //Kontynuuj tylko, jeżeli wartość nie istnieje jeszcze w kopcu
-    if (!Kopiec::sprawdzCzyIstnieje(wartosc)) {
+    if (!Kopiec::czy_sie_powtarza(wartosc)) {
 
         //Stwórz nową tablicę większą o jeden element
         int *nowaTablica = new int[rozmiar + 1];
@@ -99,6 +99,18 @@ bool Kopiec::sprawdzCzyIstnieje(int wartosc) {
     return false;
 }
 
+bool Kopiec::czy_sie_powtarza(int wartosc) {
+
+    //Przeszukaj tablicę pod kątem wartości
+    for (int i = 0; i < rozmiar; i++) {
+        //Jeżeli wartość wystąpi w iteracji zwróc true
+        if (tablica[i] == wartosc) {
+
+            return true;
+        }
+    }
+    return false;
+}
 
 
 void Kopiec::wydrukujKopiec() {

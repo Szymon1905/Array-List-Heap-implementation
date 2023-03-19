@@ -18,7 +18,7 @@ public:
 
     void poprawStrukture();
 
-    int iloscPoziomow();
+    bool czy_sie_powtarza(int);
 };
 
 

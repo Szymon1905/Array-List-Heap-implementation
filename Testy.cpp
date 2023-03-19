@@ -309,7 +309,7 @@ void Testy::testListy(){
 void Testy::testKopca(){
     srand(time(NULL));
     Czas czas;
-    Tablica tablica;
+    Kopiec kopiec;
     int wartosc;
     string daneWyjsciowe;
     string daneWejsciowe = "wejscie_100.txt";
@@ -324,110 +324,84 @@ void Testy::testKopca(){
         return;
     }
 
-    cout << "Uruchomiono Test listy " << endl;
+    cout << "Uruchomiono Test Kopca " << endl;
 
-    const char *folder = "Wyniki_listy";
+    const char *folder = "Wyniki_kopiec";
     _mkdir(folder);
     _chdir(folder);
 
-    daneWyjsciowe = "dodaj_na_poczatek.txt";
+    daneWyjsciowe = "dodaj.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     while (plikWejsciowy.good()) {
         //Wczytaj wartość z pliku
         plikWejsciowy >> wartosc;
         //Wykonaj funkcję z pomiarem
         czas.Start();
-        tablica.dodaj_na_poczatek(wartosc);
+        kopiec.dodaj(wartosc);
         czas.Stop();
         //Zapisz do pliku wynik pomiaru
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
 
-    daneWyjsciowe = "dodaj_na_koniec.txt";
+    daneWyjsciowe = "usun.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
-
-        czas.Start();
-        tablica.dodaj_na_koniec(wartosc);
-        czas.Stop();
-
-        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
-    }
-    plikWyjsciowy.close();
-
-    daneWyjsciowe = "dodaj_na_pozycje.txt";
-    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
-    plikWejsciowy.seekg(0, std::ios::beg);
-    while (plikWejsciowy.good()) {
-        plikWejsciowy >> wartosc;
-
-        czas.Start();
-        tablica.dodaj_na_pozycje(wartosc, rand() % tablica.rozmiar);
-        czas.Stop();
-
-        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
-    }
-    plikWyjsciowy.close();
-
-    daneWyjsciowe = "usun_pierwszy.txt";
-    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
-    plikWejsciowy.seekg(0, std::ios::beg);
-    while (plikWejsciowy.good()) {
-        plikWejsciowy >> wartosc;
-        tablica.dodaj_na_poczatek(wartosc);
+        kopiec.dodaj(wartosc);
     }
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        tablica.usun_pierwszy();
+        kopiec.usun(wartosc);
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
 
-    daneWyjsciowe = "usun_ostatni.txt";
+
+    daneWyjsciowe = "sprawdzCzyIstnieje.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
-        tablica.dodaj_na_poczatek(wartosc);
+        kopiec.dodaj(wartosc);
     }
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        tablica.usun_ostatni();
+        kopiec.sprawdzCzyIstnieje(wartosc);
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
 
-    daneWyjsciowe = "usun_na_pozycji.txt";
+    daneWyjsciowe = "poprawStrukture.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
-        tablica.dodaj_na_poczatek(wartosc);
+        kopiec.dodaj(wartosc);
     }
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        tablica.usun_na_pozycji(rand() % tablica.rozmiar);
+        kopiec.poprawStrukture();
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+
 
     char sciezka_wyjscia[1024];
     if (getcwd(sciezka_wyjscia, sizeof(sciezka_wyjscia)) != nullptr) {

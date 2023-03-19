@@ -3,6 +3,7 @@
 #include "Opcje.h"
 #include "Testy.h"
 #include "Lista.h"
+#include "heaper.h"
 
 using namespace std;
 
@@ -29,22 +30,6 @@ int main() {
         cin >> opcja_poczatkowa;
         //system("CLS");
 
-
-        //cout << "Automatyzować test? (t/n): ";
-        //cin >> tn;
-
-        /*
-        Lista lista;
-        lista.dodaj_na_poczatek(14);
-        lista.dodaj_na_poczatek(13);
-        lista.dodaj_na_poczatek(12);
-        lista.dodaj_na_poczatek(11);
-        lista.dodaj_na_poczatek(10);
-        lista.wypisz_liste();
-        cout<<"*****"<<endl;
-        lista.usun_na_pozycji_test2(4);
-        lista.wypisz_liste();
-        */
 
         switch (opcja_poczatkowa) {
             default:
@@ -81,6 +66,7 @@ int main() {
                         testy.testListy();
                         continue;
                     case 3:
+                        // TODO manual check czy to działa
                         testy.testKopca();
                         continue;
                     default:
@@ -92,6 +78,39 @@ int main() {
                 return 0;
                 // TODO wywalić case 6
             case 6:
+                BinaryHeap heap;
+
+                heap.add(3);
+                heap.add(2);
+                heap.add(1);
+                heap.add(5);
+                heap.add(4);
+                heap.add(10);
+                heap.add(9);
+                heap.add(8);
+                heap.add(6);
+                heap.add(7);
+
+                heap.print_heap();
+
+                heap.remove(6);
+
+                heap.print_heap();
+
+                heap.remove(1);
+
+                heap.print_heap();
+
+                heap.remove(2);
+
+                heap.print_heap();
+
+                heap.remove(9);
+
+                heap.check_if_exists(7);
+
+                heap.print_heap();
+
                 return 0;
         }
     }
