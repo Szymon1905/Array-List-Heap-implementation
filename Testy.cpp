@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 #include <cstdlib> // for the system function
 #include <direct.h> // for mkdir and chdir on Windows
 #include <unistd.h> // for getcwd
@@ -13,6 +14,7 @@ using namespace std;
 
 // Każdy test dla 100 losowych wartości w przedziale 1-100
 
+
 void Testy::testTablicy() {
     srand(time(NULL));
     Czas czas;
@@ -22,6 +24,7 @@ void Testy::testTablicy() {
     string daneWejsciowe = "wejscie_100.txt";
     ofstream plikWyjsciowy;
     ifstream plikWejsciowy;
+
 
     plikWejsciowy.open(daneWejsciowe);
     if (plikWejsciowy.is_open()) {
@@ -72,7 +75,7 @@ void Testy::testTablicy() {
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        tablica.dodaj_na_pozycje(wartosc, rand() % tablica.rozmiarTablicy);
+        tablica.dodaj_na_pozycje(wartosc, rand() % tablica.rozmiar);
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
@@ -132,7 +135,7 @@ void Testy::testTablicy() {
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        tablica.usun_na_pozycji(rand() % tablica.rozmiarTablicy);
+        tablica.usun_na_pozycji(rand() % tablica.rozmiar);
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
@@ -148,26 +151,137 @@ void Testy::testTablicy() {
     }
 
     plikWejsciowy.close();
+    chdir("..");
 }
 
 void Testy::testListy(){
     srand(time(NULL));
     Czas czas;
-    Tablica tablica;
-    int wybor = 99;
+    Lista lista;
     int wartosc;
-    int pozycja;
-    string daneWyjsciowe = "wyjscie_Tablica.txt";
+    string daneWyjsciowe;
     string daneWejsciowe = "wejscie_100.txt";
     ofstream plikWyjsciowy;
     ifstream plikWejsciowy;
 
     plikWejsciowy.open(daneWejsciowe);
+    if (plikWejsciowy.is_open()) {
+        cout << "Otwarto plik " << daneWejsciowe << endl;
+    } else {
+        cout << "Nie udało się otworzyć pliku wejściowego" << endl;
+        return;
+    }
 
+    cout << "Uruchomiono Test listy " << endl;
 
     const char *folder = "Wyniki_listy";
     _mkdir(folder);
     _chdir(folder);
+
+    daneWyjsciowe = "dodaj_na_poczatek.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    while (plikWejsciowy.good()) {
+        //Wczytaj wartość z pliku
+        plikWejsciowy >> wartosc;
+        //Wykonaj funkcję z pomiarem
+        czas.Start();
+        lista.dodaj_na_poczatek(wartosc);
+        czas.Stop();
+        //Zapisz do pliku wynik pomiaru
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+    plikWyjsciowy.close();
+
+    daneWyjsciowe = "dodaj_na_koniec.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        lista.dodaj_na_koniec(wartosc);
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+    plikWyjsciowy.close();
+
+    daneWyjsciowe = "dodaj_na_pozycje.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
+
+    lista.dodaj_na_poczatek(0);
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        lista.dodaj_na_pozycje(wartosc, rand() % lista.rozmiar);
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+    plikWyjsciowy.close();
+
+    daneWyjsciowe = "usun_pierwszy.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+        lista.dodaj_na_poczatek(wartosc);
+    }
+    plikWejsciowy.seekg(0, std::ios::beg);
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        lista.usun_pierwszy();
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+    plikWyjsciowy.close();
+
+    daneWyjsciowe = "usun_ostatni.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+        lista.dodaj_na_poczatek(wartosc);
+    }
+    plikWejsciowy.seekg(0, std::ios::beg);
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        lista.usun_ostatni();
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+    plikWyjsciowy.close();
+
+
+    daneWyjsciowe = "usun_na_pozycji.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
+
+    lista.dodaj_na_poczatek(0);
+    lista.dodaj_na_poczatek(1);
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+        lista.dodaj_na_poczatek(wartosc);
+    }
+    plikWejsciowy.seekg(0, std::ios::beg);
+    while (plikWejsciowy.good()) {
+        plikWejsciowy >> wartosc;
+
+        czas.Start();
+        lista.usun_na_pozycji(rand() % lista.rozmiar);
+        czas.Stop();
+
+        plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
+    }
+    plikWyjsciowy.close();
 
     char sciezka_wyjscia[1024];
     if (getcwd(sciezka_wyjscia, sizeof(sciezka_wyjscia)) != nullptr) {
@@ -177,17 +291,37 @@ void Testy::testListy(){
         return;
     }
 
+    plikWejsciowy.close();
+    chdir("..");
+}
+
+// TODO fix funkcji losującej
+
+void Testy::testKopca(){
+    srand(time(NULL));
+    Czas czas;
+    Tablica tablica;
+    int wartosc;
+    string daneWyjsciowe;
+    string daneWejsciowe = "wejscie_100.txt";
+    ofstream plikWyjsciowy;
+    ifstream plikWejsciowy;
+
+    plikWejsciowy.open(daneWejsciowe);
     if (plikWejsciowy.is_open()) {
-        cout << "Otwarto plik wejściowy: " << daneWejsciowe << endl;
+        cout << "Otwarto plik " << daneWejsciowe << endl;
     } else {
         cout << "Nie udało się otworzyć pliku wejściowego" << endl;
         return;
     }
 
+    cout << "Uruchomiono Test listy " << endl;
 
-    cout << "Uruchomiono Test Listy " << endl;
+    const char *folder = "Wyniki_listy";
+    _mkdir(folder);
+    _chdir(folder);
 
-    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_poczotek.txt";
+    daneWyjsciowe = "dodaj_na_poczatek.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     while (plikWejsciowy.good()) {
         //Wczytaj wartość z pliku
@@ -201,8 +335,9 @@ void Testy::testListy(){
     }
     plikWyjsciowy.close();
 
-    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_koniec.txt";
+    daneWyjsciowe = "dodaj_na_koniec.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
@@ -214,29 +349,29 @@ void Testy::testListy(){
     }
     plikWyjsciowy.close();
 
-    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_pozycje.txt";
+    daneWyjsciowe = "dodaj_na_pozycje.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        tablica.dodaj_na_pozycje(wartosc, rand() % tablica.rozmiarTablicy);
+        tablica.dodaj_na_pozycje(wartosc, rand() % tablica.rozmiar);
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
 
-    plikWyjsciowy = (basic_ofstream<char>) "usun_pierwszy.txt";
+    daneWyjsciowe = "usun_pierwszy.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
-        //Wypełnia tablicę wartościami
-
-
         plikWejsciowy >> wartosc;
 
         czas.Start();
@@ -247,12 +382,14 @@ void Testy::testListy(){
     }
     plikWyjsciowy.close();
 
-    plikWyjsciowy = (basic_ofstream<char>) "usun_ostatni.txt";
+    daneWyjsciowe = "usun_ostatni.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
@@ -264,29 +401,34 @@ void Testy::testListy(){
     }
     plikWyjsciowy.close();
 
-    plikWyjsciowy = (basic_ofstream<char>) "usun_na_pozycji.txt";
+    daneWyjsciowe = "usun_na_pozycji.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        tablica.usun_na_pozycji(rand() % tablica.rozmiarTablicy);
+        tablica.usun_na_pozycji(rand() % tablica.rozmiar);
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
 
+    char sciezka_wyjscia[1024];
+    if (getcwd(sciezka_wyjscia, sizeof(sciezka_wyjscia)) != nullptr) {
+        cout << "Dane wyjściowe zapisano w: " << sciezka_wyjscia << '\n';
+    } else {
+        cerr << "Nie udało sie otworzyć ścieżki.\n";
+        return;
+    }
+
     plikWejsciowy.close();
-}
-
-void Testy::testKopca(){
-    cout << "Uruchomiono Test Kopca " << endl;
-
 }
 
 /*
@@ -324,7 +466,7 @@ switch (wybor) {
                     plikWejsciowy >> wartosc;
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
-                    tablica.dodaj_na_pozycje(wartosc, rand() % tablica.rozmiarTablicy);
+                    tablica.dodaj_na_pozycje(wartosc, rand() % tablica.rozmiar);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
                     plikWyjsciowy << czas.czas_do_pliku() << endl;
@@ -343,7 +485,7 @@ switch (wybor) {
                     plikWejsciowy >> wartosc;
                     tablica.dodaj_na_poczatek(wartosc);
                 }
-                while (tablica.rozmiarTablicy != 0) {
+                while (tablica.rozmiar != 0) {
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
                     tablica.usun_pierwszy();
@@ -363,7 +505,7 @@ switch (wybor) {
                     plikWejsciowy >> wartosc;
                     tablica.dodaj_na_poczatek(wartosc);
                 }
-                while (tablica.rozmiarTablicy != 0) {
+                while (tablica.rozmiar != 0) {
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
                     tablica.usun_ostatni();
@@ -383,10 +525,10 @@ switch (wybor) {
                     plikWejsciowy >> wartosc;
                     tablica.dodaj_na_poczatek(wartosc);
                 }
-                while (tablica.rozmiarTablicy != 0) {
+                while (tablica.rozmiar != 0) {
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
-                    tablica.usun_na_pozycji(rand() % tablica.rozmiarTablicy);
+                    tablica.usun_na_pozycji(rand() % tablica.rozmiar);
                     czas.Stop();
                     //Zapisz do pliku wynik pomiaru
                     plikWyjsciowy << czas.czas_do_pliku() << endl;
@@ -404,7 +546,7 @@ switch (wybor) {
                     tablica.dodaj_na_poczatek(wartosc);
                 }
 
-                for (int i = 0; i < tablica.rozmiarTablicy; i++) {
+                for (int i = 0; i < tablica.rozmiar; i++) {
                     //Wykonaj funkcję z pomiarem
                     czas.Start();
                     tablica.znajdz_element(rand() % 2000000 - 1000000);

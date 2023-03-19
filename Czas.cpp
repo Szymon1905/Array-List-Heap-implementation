@@ -1,9 +1,6 @@
 #include "Czas.h"
 #include <chrono>
 
-
-
-using namespace std;
 using namespace std::chrono;
 
 void Czas::Start() {

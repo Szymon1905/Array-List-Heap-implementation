@@ -7,7 +7,7 @@ public:
 //Zmienne
     int *wskaznikNaHead;
 
-    int rozmiarTablicy;
+    int rozmiar;
 
 //Metody
     Tablica();
