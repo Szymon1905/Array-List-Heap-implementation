@@ -4,97 +4,68 @@
 
 using namespace std;
 
-void BinaryHeap:: add(int value) {
+int BinaryHeap::parent(int i) {
+    return (i - 1) / 2;
+}
+
+int BinaryHeap::left_child(int i) {
+    return 2 * i + 1;
+}
+
+int BinaryHeap::right_child(int i) {
+    return 2 * i + 2;
+}
+
+void BinaryHeap::heapify_down(int i) {
+    int min_index = i;
+
+    int left = left_child(i);
+    if (left < heap.size() && heap[left] < heap[min_index]) {
+        min_index = left;
+    }
+
+    int right = right_child(i);
+    if (right < heap.size() && heap[right] < heap[min_index]) {
+        min_index = right;
+    }
+
+    if (min_index != i) {
+        std::swap(heap[i], heap[min_index]);
+        heapify_down(min_index);
+    }
+}
+
+
+
+void BinaryHeap::add(int value) {
     heap.push_back(value);
 
     int index = heap.size() - 1;
 
     // Percolate up the newly added element to its correct position in the heap
-    while (index > 0 && heap[index] < heap[(index - 1) / 2]) {
-        std::swap(heap[index], heap[(index - 1) / 2]);
-        index = (index - 1) / 2;
+    while (index > 0 && heap[index] < heap[parent(index)]) {
+        std::swap(heap[index], heap[parent(index)]);
+        index = parent(index);
     }
 }
+    // Add a new element to the heap
 
-/*
-int BinaryHeap::remove2(int value) {
-    int index = -1;
 
-    // Find the index of the element to remove
-    for (int i = 0; i < heap.size(); ++i) {
-        if (heap[i] == value) {
-            index = i;
-            break;
-        }
-    }
-
-    if (index == -1) {
-        std::cerr << "Element not found in heap" << std::endl;
-        return -1;
-    }
-
-    int root = heap[index];
-    heap[index] = heap.back();
-    heap.pop_back();
-
-    // Percolate the element up or down to its correct position in the heap
-    while (index > 0 && heap[index] < heap[(index - 1) / 2]) {
-        std::swap(heap[index], heap[(index - 1) / 2]);
-        index = (index - 1) / 2;
-    }
-
-    while (index * 2 + 1 < heap.size()) {
-        int child1 = index * 2 + 1;
-        int child2 = index * 2 + 2;
-        int minChild = child1;
-
-        if (child2 < heap.size() && heap[child2] < heap[child1]) {
-            minChild = child2;
-        }
-
-        if (heap[minChild] < heap[index]) {
-            std::swap(heap[index], heap[minChild]);
-            index = minChild;
-        } else {
-            break;
-        }
-    }
-
-    return root;
-}
-*/
-
-int BinaryHeap::remove() {
+int BinaryHeap::remove_top() {
     if (heap.empty()) {
         std::cerr << "Heap is empty" << std::endl;
         return -1;
     }
 
-    int root = heap[0];
+    int top = heap[0];
     heap[0] = heap.back();
     heap.pop_back();
 
-    int index = 0;
-    while (index * 2 + 1 < heap.size()) {
-        int child1 = index * 2 + 1;
-        int child2 = index * 2 + 2;
-        int minChild = child1;
+    heapify_down(0);
 
-        if (child2 < heap.size() && heap[child2] < heap[child1]) {
-            minChild = child2;
-        }
-
-        if (heap[minChild] < heap[index]) {
-            std::swap(heap[index], heap[minChild]);
-            index = minChild;
-        } else {
-            break;
-        }
-    }
-
-    return root;
+    return top;
 }
-// Print the current state of the heap
+
 void BinaryHeap::print_heap() {
     for (int i = 0; i < heap.size(); ++i) {
         std::cout << heap[i] << " ";
@@ -102,12 +73,5 @@ void BinaryHeap::print_heap() {
     std::cout << std::endl;
 }
 
-// Check if an element exists in the heap
-void BinaryHeap::check_if_exists(int value) {
-    for (int i = 0; i < heap.size(); ++i) {
-        if (heap[i] == value) {
-            cout<<"element istnieje na polu: "<<i<<endl;
-        }
-    }
-    cout<<"element nie istnieje w kopcu"<<endl;
-}
+
+

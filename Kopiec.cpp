@@ -90,7 +90,7 @@ bool Kopiec::sprawdzCzyIstnieje(int wartosc) {
     for (int i = 0; i < rozmiar; i++) {
         //Jeżeli wartość wystąpi w iteracji zwróc true
         if (tablica[i] == wartosc) {
-            cout << "Szukana wartość zajmuje w tablicy kopca pozycję [" << i << "]" << endl;
+            cout << "Szukana wartość zajmuje w tablicy kopca pozycję [" << i << "]" << endl;
             return true;
         }
     }

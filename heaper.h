@@ -2,17 +2,23 @@
 #include <iostream>
 
 class BinaryHeap {
-    std::vector<int> heap;;
+    std::vector<int> heap;
 
 public:
 
-    void add(int);
+    int parent(int i);
 
-    int remove();
+    int left_child(int i);
+
+    int right_child(int i);
+
+    void heapify_down(int i);
+
+    int remove_top();
 
     void print_heap();
 
-    void check_if_exists(int);
+    void add(int value);
 
     BinaryHeap() {}
 };
