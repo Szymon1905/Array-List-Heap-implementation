@@ -4,6 +4,8 @@
 
 using namespace std;
 
+//TODO refactor nazw
+
 void Kopiec_binarny::heapify(int index) {
     int left = index * 2 + 1;
     int right = index * 2 + 2;
