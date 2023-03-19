@@ -27,15 +27,27 @@ int main() {
         cout << "5 - Wyjście" << endl << endl;
         cout << "Wybór: ";
         cin >> opcja_poczatkowa;
-        system("CLS");
+        //system("CLS");
 
 
         //cout << "Automatyzować test? (t/n): ";
         //cin >> tn;
 
+        Lista lista;
+        lista.dodaj_na_poczatek(14);
+        lista.dodaj_na_poczatek(13);
+        lista.dodaj_na_poczatek(12);
+        lista.dodaj_na_poczatek(11);
+        lista.dodaj_na_poczatek(10);
+        lista.wypisz_liste();
+        cout<<"*****"<<endl;
+        lista.usun_na_pozycji_test(5);
+        lista.wypisz_liste();
+        return 0;
+
         switch (opcja_poczatkowa) {
             default:
-                system("CLS");
+                //system("CLS");
                 cout << "Błędna opcja 2" << endl<<endl;
                 break;
             case 1:
@@ -71,7 +83,7 @@ int main() {
                         testy.testKopca();
                         continue;
                     default:
-                        system("CLS");
+                        //system("CLS");
                         cout << "Błędna opcja 1 " << endl<<endl;
                 }
 
@@ -79,18 +91,11 @@ int main() {
                 return 0;
                 // TODO wywalić case 6
             case 6:
-                Lista lista;
-                lista.dodaj_na_poczatek(10);
-                lista.dodaj_na_poczatek(11);
-                lista.dodaj_na_poczatek(12);
-                lista.dodaj_na_poczatek(13);
-                lista.dodaj_na_poczatek(14);
-                lista.wypisz_liste();
-                cout<<"*****"<<endl;
-                lista.usun_na_pozycji(3);
-                lista.wypisz_liste();
+                return 0;
         }
     }
 }
 
-
+// pass 0,1,4
+// fail 3
+// invalid value 2

@@ -31,7 +31,7 @@ void Opcje::opcja_tablica() {
         cout << endl;
         cout << "Wybór: ";
         cin >> wybor;
-        system("CLS");
+        //system("CLS");
         cout<<"Wybrano: "<<wybor<<endl;
         switch (wybor) {
             case 1:
@@ -133,7 +133,7 @@ void Opcje::opcje_listy() {
         cout << "9 - Wyjście" << endl << endl;
         cout << "Wybrano: ";
         cin >> wybor;
-        system("CLS");
+        //system("CLS");
 
         switch (wybor) {
 
@@ -229,7 +229,7 @@ void Opcje::opcje_kopca() {
         cout << "5 - Wyjście" << endl << endl;
         cout << "Wybrano: ";
         cin >> wybor;
-        system("CLS");
+        //system("CLS");
 
         switch (wybor) {
             case 1:

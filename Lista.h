@@ -43,6 +43,8 @@ public:
 
     void usun_na_pozycji(int);
 
+    void usun_na_pozycji_test(int);
+
     bool znajdz_element(int wartosc);
 };
 

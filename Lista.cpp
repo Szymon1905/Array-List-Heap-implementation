@@ -167,8 +167,8 @@ void Lista::usun_ostatni() {
 
 }
 
+// TODO usunąć starą metode
 void Lista::usun_na_pozycji(int pozycja) {
-
 //Sprawdź czy w liście istnieje pozycja podana przez użytkownika
     if (pozycja < 0 || pozycja >= rozmiar) {
         cout << "W liście nie istnieje pozycja [" << pozycja << "]" << endl;
@@ -186,11 +186,9 @@ void Lista::usun_na_pozycji(int pozycja) {
         return;
     }
 
-    cout<<"TEST: "<<ceil(rozmiar / 2)<<endl;
-
     //Sprawdź w której połowie listy znajduje się wybrany element
     if (pozycja < ceil(rozmiar / 2)) {
-
+        cout<<"HERE 0 "<<endl;
         //Przypisz za aktualny element pierwszy
         aktualnyElement = pierwszyElement;
 
@@ -198,10 +196,10 @@ void Lista::usun_na_pozycji(int pozycja) {
         for (int i = 1; i < pozycja - 1; ++i) {
             aktualnyElement = aktualnyElement->nastepny;
         }
-        cout<<"HERE"<<endl;
+        cout<<"HERE 1 "<<endl;
 
     } else {
-
+        cout<<"HERE 2 "<<endl;
         //Przypisz za aktualny element ostatni
         aktualnyElement = ostatniElement;
 
@@ -209,9 +207,9 @@ void Lista::usun_na_pozycji(int pozycja) {
         for (int i = 0; i < rozmiar - pozycja - 1; ++i) {
             aktualnyElement = aktualnyElement->poprzedni;
         }
-
+        cout<<"HERE 3 "<<endl;
     }
-
+    cout<<"HERE 4"<<endl;
     //Stwórz nowy element listy z podanymi parametrami
     ElementListy *nowyElementListy = aktualnyElement->nastepny;
 
@@ -224,6 +222,31 @@ void Lista::usun_na_pozycji(int pozycja) {
     //Zmniejsz rozmiar listy
     rozmiar--;
 
+}
+
+void Lista::usun_na_pozycji_test(int pozycja) {
+    if (pozycja < 1 || pozycja > rozmiar) { // sprawdzenie czy pozycja jest w zakresie listy
+        std::cout << "Nieprawidlowa pozycja!" << std::endl;
+        return;
+    }
+    if (pozycja == 1) { // usuwanie pierwszego elementu
+        usun_pierwszy();
+        return;
+    }
+    if (pozycja == rozmiar) { // usuwanie ostatniego elementu
+        usun_ostatni();
+        return;
+    }
+    ElementListy *poprzedniElement = nullptr;
+    aktualnyElement = pierwszyElement;
+    for (int i = 1; i < pozycja; i++) { // przesuwamy sie do elementu na pozycji do usuniecia
+        poprzedniElement = aktualnyElement;
+        aktualnyElement = aktualnyElement->nastepny;
+    }
+    poprzedniElement->nastepny = aktualnyElement->nastepny; // usuwamy element ze srodkowej czesci listy
+    aktualnyElement->nastepny->poprzedni = poprzedniElement;
+    delete aktualnyElement;
+    rozmiar--;
 }
 
 bool Lista::znajdz_element(int wartosc) {
