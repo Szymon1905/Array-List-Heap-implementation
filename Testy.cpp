@@ -18,28 +18,12 @@ void Testy::testTablicy() {
     Czas czas;
     Tablica tablica;
     int wartosc;
-    string daneWyjsciowe = "wyjscie_Tablica.txt";
+    string daneWyjsciowe;
     string daneWejsciowe = "wejscie_100.txt";
     ofstream plikWyjsciowy;
     ifstream plikWejsciowy;
 
     plikWejsciowy.open(daneWejsciowe);
-
-
-    const char *folder = "Wyniki_tablicy";
-    _mkdir(folder);
-    _chdir(folder);
-
-    char sciezka_wyjscia[1024];
-    if (getcwd(sciezka_wyjscia, sizeof(sciezka_wyjscia)) != nullptr) {
-        cout << "Dane wyjściowe zapisano w: " << sciezka_wyjscia << '\n';
-    } else {
-        cerr << "Nie udało sie otworzyć ścieżki.\n";
-        return;
-    }
-
-    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
-
     if (plikWejsciowy.is_open()) {
         cout << "Otwarto plik " << daneWejsciowe << endl;
     } else {
@@ -47,16 +31,14 @@ void Testy::testTablicy() {
         return;
     }
 
-    if (plikWyjsciowy.is_open()) {
-        cout << "Otwarto plik " << daneWyjsciowe << endl;
-    } else {
-        cout << "Nie udało się otworzyć pliku wyjściowego" << endl;
-        return;
-    }
-
     cout << "Uruchomiono Test tablicy " << endl;
 
-    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_poczotek.txt";
+    const char *folder = "Wyniki_tablicy";
+    _mkdir(folder);
+    _chdir(folder);
+
+    daneWyjsciowe = "dodaj_na_poczotek.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     while (plikWejsciowy.good()) {
         //Wczytaj wartość z pliku
         plikWejsciowy >> wartosc;
@@ -67,8 +49,11 @@ void Testy::testTablicy() {
         //Zapisz do pliku wynik pomiaru
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
+    plikWyjsciowy.close();
 
-    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_koniec.txt";
+    daneWyjsciowe = "dodaj_na_koniec.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
@@ -78,8 +63,11 @@ void Testy::testTablicy() {
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
+    plikWyjsciowy.close();
 
-    plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_pozycje.txt";
+    daneWyjsciowe = "dodaj_na_pozycje.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
@@ -89,12 +77,16 @@ void Testy::testTablicy() {
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
+    plikWyjsciowy.close();
 
-    plikWyjsciowy = (basic_ofstream<char>) "usun_pierwszy.txt";
+    daneWyjsciowe = "usun_pierwszy.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         //Wypełnia tablicę wartościami
 
@@ -107,12 +99,16 @@ void Testy::testTablicy() {
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
+    plikWyjsciowy.close();
 
-    plikWyjsciowy = (basic_ofstream<char>) "usun_ostatni.txt";
+    daneWyjsciowe = "usun_ostatni.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
@@ -122,12 +118,16 @@ void Testy::testTablicy() {
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
+    plikWyjsciowy.close();
 
-    plikWyjsciowy = (basic_ofstream<char>) "usun_na_pozycji.txt";
+    daneWyjsciowe = "usun_na_pozycji.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
@@ -137,11 +137,19 @@ void Testy::testTablicy() {
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
+    plikWyjsciowy.close();
 
+    char sciezka_wyjscia[1024];
+    if (getcwd(sciezka_wyjscia, sizeof(sciezka_wyjscia)) != nullptr) {
+        cout << "Dane wyjściowe zapisano w: " << sciezka_wyjscia << '\n';
+    } else {
+        cerr << "Nie udało sie otworzyć ścieżki.\n";
+        return;
+    }
 
     plikWejsciowy.close();
-    plikWyjsciowy.close();
 }
+
 void Testy::testListy(){
     srand(time(NULL));
     Czas czas;
@@ -169,25 +177,18 @@ void Testy::testListy(){
         return;
     }
 
-    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
-
     if (plikWejsciowy.is_open()) {
-        cout << "Otwarto plik " << daneWejsciowe << endl;
+        cout << "Otwarto plik wejściowy: " << daneWejsciowe << endl;
     } else {
         cout << "Nie udało się otworzyć pliku wejściowego" << endl;
         return;
     }
 
-    if (plikWyjsciowy.is_open()) {
-        cout << "Otwarto plik " << daneWyjsciowe << endl;
-    } else {
-        cout << "Nie udało się otworzyć pliku wyjściowego" << endl;
-        return;
-    }
 
     cout << "Uruchomiono Test Listy " << endl;
 
     plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_poczotek.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     while (plikWejsciowy.good()) {
         //Wczytaj wartość z pliku
         plikWejsciowy >> wartosc;
@@ -198,8 +199,10 @@ void Testy::testListy(){
         //Zapisz do pliku wynik pomiaru
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
+    plikWyjsciowy.close();
 
     plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_koniec.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
@@ -209,8 +212,10 @@ void Testy::testListy(){
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
+    plikWyjsciowy.close();
 
     plikWyjsciowy = (basic_ofstream<char>) "dodaj_na_pozycje.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
@@ -220,8 +225,10 @@ void Testy::testListy(){
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
+    plikWyjsciowy.close();
 
     plikWyjsciowy = (basic_ofstream<char>) "usun_pierwszy.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
@@ -238,8 +245,10 @@ void Testy::testListy(){
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
+    plikWyjsciowy.close();
 
     plikWyjsciowy = (basic_ofstream<char>) "usun_ostatni.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
@@ -253,8 +262,10 @@ void Testy::testListy(){
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
+    plikWyjsciowy.close();
 
     plikWyjsciowy = (basic_ofstream<char>) "usun_na_pozycji.txt";
+    plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
@@ -268,11 +279,9 @@ void Testy::testListy(){
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
-
-
-    plikWejsciowy.close();
     plikWyjsciowy.close();
 
+    plikWejsciowy.close();
 }
 
 void Testy::testKopca(){
