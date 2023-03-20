@@ -95,6 +95,7 @@ int main() {
                 kopiecus.dodaj(10);
                 kopiecus.dodaj(16);
 
+                /*
                 kopiecus.wypisz_kopiec();
 
                 kopiecus.usun_ze_szczytu();
@@ -110,7 +111,7 @@ int main() {
                 kopiecus.wypisz_kopiec();
 
                 kopiecus.usun_ze_szczytu();
-
+                */
                 kopiecus.wypisz_kopiec();
 
                 kopiecus.kopiec_w_ASCII();

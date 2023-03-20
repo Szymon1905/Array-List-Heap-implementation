@@ -77,33 +77,31 @@ void Kopiec_binarny::czy_istnieje(int wartosc) {
 }
 
 void Kopiec_binarny::kopiec_w_ASCII() {
-    if (kopiec.empty()) {
-        cout << "Heap is empty" << endl;
-        return;
-    }
+    cout<<endl;
+    int height = floor(log2(kopiec.size())) + 1;
+    int max_width = pow(2, height) * 4;
 
-    int level = 0;
-    int nodes_in_level = 1;
-    int nodes_printed = 0;
-    int max_level = floor(log2(kopiec.size())) + 1;
+    int index = 0;
+    int current_level = 1;
+    int current_node_count = 1;
+    while (index < kopiec.size()) {
+        for (int i = 0; i < current_node_count; i++) {
+            if (i == current_node_count - 1) {
+                cout << setw(max_width / current_node_count) << kopiec[index] << endl;
+            } else {
+                cout << setw(max_width / current_node_count) << kopiec[index];
+            }
+            index++;
 
-    for (int i = 0; i < kopiec.size(); ++i) {
-        // Print the node
-        cout << setw(2) << kopiec[i] << " ";
-
-        // Update the node counters
-        nodes_printed++;
-        if (nodes_printed == nodes_in_level) {
-            cout << endl;
-            nodes_in_level *= 2;
-            nodes_printed = 0;
-            level++;
-            if (level == max_level) {
+            if (index >= kopiec.size()) {
                 break;
             }
         }
+        current_level++;
+        current_node_count *= 2;
     }
 }
+
 
 
 
