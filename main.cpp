@@ -93,6 +93,7 @@ int main() {
                 kopiecus.dodaj(10);
                 kopiecus.dodaj(16);
 
+
                 /*
                 kopiecus.wypisz_kopiec();
 
