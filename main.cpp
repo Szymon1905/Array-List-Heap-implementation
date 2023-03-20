@@ -81,6 +81,8 @@ int main() {
             case 6:
                 // Testy kocpa
                 Kopiec_binarny kopiecus;
+                int * pointer;       // Declare a pointer variable called pNumber pointing to an int (or int pointer)
+                pointer = reinterpret_cast<int *>(&kopiecus);
 
                 kopiecus.dodaj(10);
                 kopiecus.dodaj(20);
@@ -110,6 +112,8 @@ int main() {
                 kopiecus.usun_ze_szczytu();
 
                 kopiecus.wypisz_kopiec();
+
+                kopiecus.kopiec_w_ASCII();
 
                 string czekaj;
                 cin>>czekaj;

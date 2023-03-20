@@ -43,11 +43,11 @@ public:
 
     void usun_ostatni();
 
-    void usun_na_pozycji(int);
+    void usun_na_pozycji_stare(int);
 
     void usun_na_pozycji_test(int);
 
-    void usun_na_pozycji_test2(int);
+    void usun_na_pozycji(int);
 
     void znajdz_element(int wartosc);
 };

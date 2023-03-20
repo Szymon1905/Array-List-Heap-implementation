@@ -138,7 +138,7 @@ void Testy::testTablicy() {
     }
     plikWyjsciowy.close();
 
-    daneWyjsciowe = "usun_na_pozycji.txt";
+    daneWyjsciowe = "usun_na_pozycji_stare.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
@@ -273,7 +273,7 @@ void Testy::testListy(){
     }
     plikWyjsciowy.close();
 
-    daneWyjsciowe = "usun_na_pozycji.txt";
+    daneWyjsciowe = "usun_na_pozycji_stare.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
@@ -285,7 +285,7 @@ void Testy::testListy(){
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        lista.usun_na_pozycji_test2(losuj(lista.rozmiar));
+        lista.usun_na_pozycji(losuj(lista.rozmiar));
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;

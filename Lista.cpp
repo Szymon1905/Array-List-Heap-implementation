@@ -77,19 +77,19 @@ void Lista::dodaj_na_pozycje(int wartosc, int pozycja) {
         return;
     }
 
-    //Sprawdzam czy wybrana pozycja jest pierwszą
+    //Sprawdzam  pozycja jest pierwsza
     if (pozycja == 0) {
         Lista::dodaj_na_poczatek(wartosc);
         return;
     }
 
-    //Sprawdzam czy pozycja jest ostatnią pozycją
+    //Sprawdzam czy pozycja jest ostatnia
     if (pozycja == rozmiar - 1) {
         dodaj_na_koniec(wartosc);
         return;
     }
 
-    //Sprawdź w której połowie listy znajduje się wybrany elementy_listy
+    //Sprawdzam w której połowie listy znajduje się wybrany elementy_listy
     if (pozycja < rozmiar / 2) { //liczone od indeksu zerowego
 
         //Przypisz za aktualny elementy_listy pierwszy
@@ -102,10 +102,10 @@ void Lista::dodaj_na_pozycje(int wartosc, int pozycja) {
 
     } else {
 
-        //Przypisz za aktualny elementy_listy ostatni
+        //Przypisuje za ostatni jako aktualny
         aktualny_element = ostatni_element;
 
-        //Przesuń wszystkie elementy o jedną pozycję wstecz
+        //Przesuwam wszystkie elementy o jedną pozycję do tyłu
         for (int i = 0; i < Lista::rozmiar - pozycja - 1; ++i) {
             aktualny_element = aktualny_element->poprzedni;
         }
@@ -113,12 +113,12 @@ void Lista::dodaj_na_pozycje(int wartosc, int pozycja) {
     }
 
     //Stwórz nowy elementy_listy listy z podanymi parametrami
-    elementy_listy *nowyElementListy = new elementy_listy(wartosc, aktualny_element,
-                                                          aktualny_element->nastepny);
+    elementy_listy *nowy_element = new elementy_listy(wartosc, aktualny_element,
+                                                      aktualny_element->nastepny);
 
     //przypisz nowy elementy_listy w odpowiednim miejscu tablicy
-    aktualny_element->nastepny->poprzedni = nowyElementListy;
-    aktualny_element->nastepny = nowyElementListy;
+    aktualny_element->nastepny->poprzedni = nowy_element;
+    aktualny_element->nastepny = nowy_element;
 
     //Zwiększ rozmiar listy
     rozmiar = rozmiar + 1;
@@ -150,14 +150,13 @@ void Lista::usun_pierwszy() {
 
 void Lista::usun_ostatni() {
 
-    //Przypisz przedostani elementy_listy jako aktualny
+    //Przypisuje przedostani element jako aktualny
     aktualny_element = ostatni_element->poprzedni;
-    //Usuń ostatni elementy_listy
+
+    //Usuwam ostatni element listy
     delete ostatni_element;
 
-    //Sprawdź, czy w liście są jeszcze jakieś elementy
-    //Jeżeli tak, ustaw aktualny elementy_listy jako ostatni
-    //Jeżeli nie, wyzeruj elementy listy
+    //Sprawdzam czy lista nie jest pusta
     if (rozmiar > 1) {
         aktualny_element->nastepny = NULL;
         ostatni_element = aktualny_element;
@@ -167,13 +166,13 @@ void Lista::usun_ostatni() {
         ostatni_element = NULL;
     }
 
-    //Zmniejsz rozmiar listy
+    //Zmniejszam rozmiar listy
     rozmiar--;
 
 }
 
 // TODO usunąć starą metode
-void Lista::usun_na_pozycji(int pozycja) {
+void Lista::usun_na_pozycji_stare(int pozycja) {
 //Sprawdź czy w liście istnieje pozycja podana przez użytkownika
     if (pozycja < 0 || pozycja >= rozmiar) {
         cout << "W liście nie istnieje pozycja [" << pozycja << "]" << endl;
@@ -242,14 +241,14 @@ void Lista::usun_na_pozycji_test(int pozycja) {
         poprzedniElement = aktualny_element;
         aktualny_element = aktualny_element->nastepny;
     }
-    poprzedniElement->nastepny = aktualny_element->nastepny; // usuwamy elementy_listy ze srodkowej czesci listy
+    poprzedniElement->nastepny = aktualny_element->nastepny; // usuwam elementy_listy ze srodkowej czesci listy
     aktualny_element->nastepny->poprzedni = poprzedniElement;
     delete aktualny_element;
     rozmiar--;
 }
 
 // TODO sprawdzic dla 3 elementow 32,86,53
-void Lista::usun_na_pozycji_test2(int pozycja) {
+void Lista::usun_na_pozycji(int pozycja) {
     if (pozycja < 0 || pozycja >= rozmiar) {
         cout << "Niepoprawna pozycja" << endl;
         return;

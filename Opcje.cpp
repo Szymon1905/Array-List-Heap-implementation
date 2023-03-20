@@ -185,7 +185,7 @@ void Opcje::opcje_listy() {
                 cout << "Podaj pozycję: ";
                 cin >> pozycja;
                 czas.Start();
-                lista.usun_na_pozycji_test2(pozycja);
+                lista.usun_na_pozycji(pozycja);
                 czas.Stop();
                 czas.Zmierzony_czas();
                 break;

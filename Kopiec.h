@@ -3,6 +3,7 @@
 
 class Kopiec_binarny {
     std::vector<int> kopiec;
+    int rozmiar_kopca=0;
 
 public:
     Kopiec_binarny() {}
@@ -17,4 +18,5 @@ public:
 
     void czy_istnieje(int wartosc);
 
+    void kopiec_w_ASCII();
 };

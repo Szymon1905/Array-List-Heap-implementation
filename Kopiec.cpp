@@ -1,5 +1,7 @@
 #include <vector>
 #include <iostream>
+#include <iomanip>
+#include <cmath>
 #include "Kopiec.h"
 
 using namespace std;
@@ -39,6 +41,7 @@ void Kopiec_binarny::dodaj(int value) {
         index = parent;
         parent = (index - 1) / 2;
     }
+    rozmiar_kopca++;
 }
 
 int Kopiec_binarny::usun_ze_szczytu() {
@@ -52,6 +55,7 @@ int Kopiec_binarny::usun_ze_szczytu() {
     kopiec.pop_back();
     popraw(0);
 
+    rozmiar_kopca--;
     return szczyt;
 }
 
@@ -70,6 +74,35 @@ void Kopiec_binarny::czy_istnieje(int wartosc) {
         }
     }
     cout << "Nie ma takiej wartości w kopcu" << endl;
+}
+
+void Kopiec_binarny::kopiec_w_ASCII() {
+    if (kopiec.empty()) {
+        cout << "Heap is empty" << endl;
+        return;
+    }
+
+    int level = 0;
+    int nodes_in_level = 1;
+    int nodes_printed = 0;
+    int max_level = floor(log2(kopiec.size())) + 1;
+
+    for (int i = 0; i < kopiec.size(); ++i) {
+        // Print the node
+        cout << setw(2) << kopiec[i] << " ";
+
+        // Update the node counters
+        nodes_printed++;
+        if (nodes_printed == nodes_in_level) {
+            cout << endl;
+            nodes_in_level *= 2;
+            nodes_printed = 0;
+            level++;
+            if (level == max_level) {
+                break;
+            }
+        }
+    }
 }
 
 
