@@ -120,6 +120,8 @@ void Kopiec_binarny::kopiec_w_ASCII2() {
         int num_nodes = pow(2, level);
         // Calculate the spacing between nodes
         int spacing = width / num_nodes;
+        // Calculate the spacing between levels
+        int level_spacing = spacing * 2;
 
         // Print the nodes on this level
         for (int i = 0; i < num_nodes; i++) {
@@ -130,8 +132,8 @@ void Kopiec_binarny::kopiec_w_ASCII2() {
                 break;
             }
 
-            // Print the node
-            std::cout << std::string(spacing, ' ') << kopiec[index];
+            // Print the node with spacing
+            std::cout << std::string(spacing, ' ') << kopiec[index] << std::string(spacing, ' ') << std::string(level_spacing, ' ');
         }
 
         // Print a newline character to move to the next level
