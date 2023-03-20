@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Lista.h"
-#include <cmath>
+
 using namespace std;
 
 Lista::Lista() {
@@ -9,7 +9,7 @@ Lista::Lista() {
     Lista::ostatni_element = NULL;
     Lista::rozmiar = 0;
 }
-// TODO refactor listy i komentarzy
+
 Lista::~Lista() {
     for (int i = 0; i < Lista::rozmiar; i++) {
 
@@ -214,7 +214,7 @@ void Lista::znajdz_element(int wartosc) {
     //Przypisuje pierwszy jako aktualny element
     aktualny_element = pierwszy_element;
 
-    //Przeszukuje liste
+    //szukam wartosci w liście
     for (int i = 0; i < rozmiar; i++) {
         if (aktualny_element->wartosc == wartosc) {
             cout << "wartość jest na pozycji: "<< i << endl;
@@ -245,7 +245,6 @@ void Lista::wypisz_liste() {
     }
 }
 
-// TODO co z tym
 elementy_listy::elementy_listy(int wartosc, elementy_listy *nastepny, elementy_listy *poprzedni) {
 
     elementy_listy::wartosc = wartosc;

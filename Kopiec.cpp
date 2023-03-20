@@ -102,6 +102,43 @@ void Kopiec_binarny::kopiec_w_ASCII() {
     }
 }
 
+void Kopiec_binarny::kopiec_w_ASCII2() {
+    // Calculate the depth of the heap
+    int depth = 0;
+    int num_nodes = 1;
+    while (num_nodes <= kopiec.size()) {
+        depth++;
+        num_nodes *= 2;
+    }
+
+    // Calculate the width of each level
+    int width = pow(2, depth - 1);
+
+    // Loop through each level of the heap
+    for (int level = 0; level < depth; level++) {
+        // Calculate the number of nodes on this level
+        int num_nodes = pow(2, level);
+        // Calculate the spacing between nodes
+        int spacing = width / num_nodes;
+
+        // Print the nodes on this level
+        for (int i = 0; i < num_nodes; i++) {
+            // Calculate the index of this node
+            int index = pow(2, level) - 1 + i;
+            // If the index is beyond the end of the heap, break out of the loop
+            if (index >= kopiec.size()) {
+                break;
+            }
+
+            // Print the node
+            std::cout << std::string(spacing, ' ') << kopiec[index];
+        }
+
+        // Print a newline character to move to the next level
+        std::cout << std::endl;
+    }
+}
+
 
 
 

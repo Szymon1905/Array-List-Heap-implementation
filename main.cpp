@@ -112,7 +112,7 @@ int main() {
                 */
                 kopiecus.wypisz_kopiec();
 
-                kopiecus.kopiec_w_ASCII();
+                kopiecus.kopiec_w_ASCII2();
 
                 cin>>opcja_poczatkowa;
                 return 0;

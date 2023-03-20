@@ -19,4 +19,8 @@ public:
     void czy_istnieje(int wartosc);
 
     void kopiec_w_ASCII();
+
+    void kopiec_w_ASCII2(std::vector<int> heap);
+
+    void kopiec_w_ASCII2();
 };
