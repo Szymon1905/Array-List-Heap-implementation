@@ -15,6 +15,6 @@ public:
 
     void dodaj(int value);
 
-    bool czy_istnieje(int wartosc);
+    void czy_istnieje(int wartosc);
 
 };

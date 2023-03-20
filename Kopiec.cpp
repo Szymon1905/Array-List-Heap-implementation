@@ -55,6 +55,7 @@ int Kopiec_binarny::usun_ze_szczytu() {
     return szczyt;
 }
 
+// TODO Buchalski kazał wypisac to jak w ASCII
 void Kopiec_binarny::wypisz_kopiec() {
     for (int i = 0; i < kopiec.size(); ++i) {
         cout << kopiec[i] << " ";
@@ -62,13 +63,13 @@ void Kopiec_binarny::wypisz_kopiec() {
     cout << endl;
 }
 
-bool Kopiec_binarny::czy_istnieje(int wartosc) {
+void Kopiec_binarny::czy_istnieje(int wartosc) {
     for (int i = 0; i < kopiec.size(); ++i) {
         if (kopiec[i] == wartosc) {
-            return true;
+            cout << "wartość jest na pozycji: "<< i << endl;
         }
     }
-    return false;
+    cout << "Nie ma takiej wartości w kopcu" << endl;
 }
 
 

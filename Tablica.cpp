@@ -69,7 +69,7 @@ void Tablica::dodaj_na_koniec(int wartosc) {
 }
 
 void Tablica::dodaj_na_pozycje(int wartosc, int pozycja) {
-    //Sprawdam czy taka pozycja jest w tablicy
+    //Sprawdzam czy taka pozycja jest w tablicy
     if (pozycja < 0 || pozycja > rozmiar) {
         cout << "W tablicy nie istnieje pozycja [" << pozycja << "]!" << endl;
     } else {
@@ -77,7 +77,7 @@ void Tablica::dodaj_na_pozycje(int wartosc, int pozycja) {
         //Alokuje pamięć na tablicę o jeden większą
         int *nowy_wskaznik = new int[rozmiar + 1];
 
-        //Przypisuje wartość jako inne_elementy tablicy na wybranej pozycji
+        //Przypisuje wartość jako elementy_listy tablicy na wybranej pozycji
         nowy_wskaznik[pozycja] = wartosc;
 
         //Przepisuje dane przed pozycją ze starej do nowej tablicy
@@ -130,7 +130,7 @@ void Tablica::usun_ostatni() {
 
 void Tablica::usun_pierwszy() {
 
-    //Sprawdam, czy tablica nie jest pusta
+    //Sprawdzam, czy tablica nie jest pusta
     if (rozmiar > 0) {
         //Alokuje pamięć na tablicę o jeden mniejszą
         int *nowy_wskaznik = new int[rozmiar - 1];
@@ -155,7 +155,6 @@ void Tablica::usun_pierwszy() {
 }
 
 void Tablica::usun_na_pozycji(int pozycja) {
-
     //Sprawdzam, czy tablica nie jest pusta i czy pozycja jest prawidłowa
     if (rozmiar > 0 || pozycja > 0 || pozycja < rozmiar) {
         //Alokuje pamięć na tablicę o jeden mniejszą
@@ -186,9 +185,8 @@ void Tablica::usun_na_pozycji(int pozycja) {
 
 bool Tablica::znajdz_element(int wartosc) {
 
-    //Przeszukaj tablicę pod kątem wartości
+    //Szukam element
     for (int i = 0; i < rozmiar; i++) {
-        //Jeżeli wartość wystąpi w iteracji zwróc true
         if (wskaznik[i] == wartosc) {
             cout << "wartość jest na pozcyji: "<< i << endl;
             return true;
@@ -205,10 +203,11 @@ void Tablica::wypisz_tablice() {
     //Sprawdzam czy wskaznik nie jest null i wypisuje tablice
     if (wskaznik != NULL) {
         for (int i = 0; i < rozmiar; i++) {
+            // TODO zmiana takich
             cout << "    [" << i << "] " << wskaznik[i] << endl;
         }
     } else {
-        cout << "    Tablica nie ma żadnych elementów" << endl;
+        cout << "Tablica nie ma żadnych elementów" << endl;
     }
 }
 

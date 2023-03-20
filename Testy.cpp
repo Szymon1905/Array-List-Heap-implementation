@@ -34,6 +34,7 @@ void Testy::testTablicy() {
     Czasomierz czas;
     Tablica tablica;
     int wartosc;
+    // pliki wejściowe i wyjściowe
     string daneWyjsciowe;
     string daneWejsciowe = "wejscie_100.txt";
     ofstream plikWyjsciowy;
@@ -89,7 +90,7 @@ void Testy::testTablicy() {
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        tablica.dodaj_na_pozycje(wartosc, rand() % tablica.rozmiar);
+        tablica.dodaj_na_pozycje(wartosc, losuj(tablica.rozmiar));
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
@@ -149,7 +150,7 @@ void Testy::testTablicy() {
         plikWejsciowy >> wartosc;
 
         czas.Start();
-        tablica.usun_na_pozycji(rand() % tablica.rozmiar);
+        tablica.usun_na_pozycji(losuj(tablica.rozmiar));
         czas.Stop();
 
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
@@ -291,6 +292,7 @@ void Testy::testListy(){
     }
     plikWyjsciowy.close();
 
+    // Piszę ścieżkę w którje zapisano plik
     char sciezka_wyjscia[1024];
     if (getcwd(sciezka_wyjscia, sizeof(sciezka_wyjscia)) != nullptr) {
         cout << "Dane wyjściowe zapisano w: " << sciezka_wyjscia << '\n';
@@ -300,6 +302,8 @@ void Testy::testListy(){
     }
 
     plikWejsciowy.close();
+
+    //wracam do nadrzędnej lokacji
     chdir("..");
 }
 

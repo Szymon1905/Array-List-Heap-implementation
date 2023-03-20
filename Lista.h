@@ -5,14 +5,14 @@
 
 using namespace std;
 
-class inne_elementy{
+class elementy_listy{
 
 public:
-    inne_elementy *nastepny;
-    inne_elementy *poprzedni;
+    elementy_listy *nastepny;
+    elementy_listy *poprzedni;
     int wartosc;
 
-    inne_elementy(int, inne_elementy *, inne_elementy *);
+    elementy_listy(int, elementy_listy *, elementy_listy *);
 };
 
 
@@ -27,9 +27,9 @@ public:
 
     ~Lista();
 
-    inne_elementy *pierwszyElement;
-    inne_elementy *ostatniElement;
-    inne_elementy *aktualnyElement;
+    elementy_listy *pierwszy_element;
+    elementy_listy *ostatni_element;
+    elementy_listy *aktualny_element;
 
     void dodaj_na_poczatek(int wartosc);
 
@@ -49,6 +49,6 @@ public:
 
     void usun_na_pozycji_test2(int);
 
-    bool znajdz_element(int wartosc);
+    void znajdz_element(int wartosc);
 };
 

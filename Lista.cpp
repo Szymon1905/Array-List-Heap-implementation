@@ -4,116 +4,121 @@
 using namespace std;
 
 Lista::Lista() {
-    Lista::pierwszyElement = NULL;
-    Lista::aktualnyElement = NULL;
-    Lista::ostatniElement = NULL;
+    Lista::pierwszy_element = NULL;
+    Lista::aktualny_element = NULL;
+    Lista::ostatni_element = NULL;
     Lista::rozmiar = 0;
 }
 // TODO refactor listy i komentarzy
 Lista::~Lista() {
     for (int i = 0; i < Lista::rozmiar; i++) {
 
-        //Przypisz kolejny inne_elementy jako aktualny
-        aktualnyElement = pierwszyElement->nastepny;
-        //Usuń pierwszy inne_elementy
-        delete pierwszyElement;
+        //Przepisuje kolejne elementy listy jako aktualne
+        aktualny_element = pierwszy_element->nastepny;
 
-        pierwszyElement = aktualnyElement;
+        //Usuwam pierwszy elementy_listy
+        delete pierwszy_element;
+
+        pierwszy_element = aktualny_element;
     }
 }
 
 void Lista::dodaj_na_poczatek(int wartosc) {
 
-    //Sprawdź, czy istnieje inne_elementy początkowy
-    if (pierwszyElement == NULL) {
-        //Utwórz nowy inne_elementy i ustaw go jako inne_elementy początkowy i końcowy
-        pierwszyElement = new inne_elementy(wartosc, NULL, NULL);
-        ostatniElement = pierwszyElement;
+    //Sprawdzam, czy pierwszy element istnieje
+    if (pierwszy_element == NULL) {
+        //Tworzę nowy element i ustawiam go jako początkowy i końcowy
+        pierwszy_element = new elementy_listy(wartosc, NULL, NULL);
+        ostatni_element = pierwszy_element;
 
     } else {
-        //Ustaw inne_elementy ktory był pierwszym jako aktualny
-        aktualnyElement = pierwszyElement;
-        //Zastąp pierwszy inne_elementy nowym
-        //Ustaw jego wartość oraz inne_elementy kolejny na inne_elementy aktualny (były pierwszy)
-        pierwszyElement = new inne_elementy(wartosc, aktualnyElement, NULL);
-        aktualnyElement->poprzedni = pierwszyElement;
+        //Ustawiam element ktory był pierwszy na aktualny
+        aktualny_element = pierwszy_element;
+
+        // TODO URGENT FIX TUTAJ
+        //Ustaw jego wartość oraz elementy_listy kolejny na elementy_listy aktualny (były pierwszy)
+        //Zastępuje pierwszy element nowym
+        pierwszy_element = new elementy_listy(wartosc, aktualny_element, NULL);
+        aktualny_element->poprzedni = pierwszy_element;
 
     }
 
-    //Zwiększ rozmiar listy
+    //Zwiększam rozmiar listy
     rozmiar = rozmiar + 1;
 
 }
 
 void Lista::dodaj_na_koniec(int wartosc) {
-    //Sprawdź, czy istnieje inne_elementy początkowy
-    if (pierwszyElement == NULL) {
-        //Utwórz nowy inne_elementy i ustaw go jako inne_elementy początkowy i końcowy
-        ostatniElement = new inne_elementy(wartosc, NULL, NULL);
-        pierwszyElement = ostatniElement;
+    //Sprawdzam, czy istnieje element początkowy
+    if (pierwszy_element == NULL) {
+        //Tworzę nowy element i ustawiam go jako element początkowy i końcowy
+        ostatni_element = new elementy_listy(wartosc, NULL, NULL);
+        pierwszy_element = ostatni_element;
 
     } else {
-        //Ustaw inne_elementy który był ostatnim jako aktualny
-        aktualnyElement = ostatniElement;
-        //Zastąp ostatni inne_elementy nowym
-        //Ustaw jego wartość oraz inne_elementy poprzedni na inne_elementy aktualny (były ostatni)
-        ostatniElement = new inne_elementy(wartosc, NULL, aktualnyElement);
-        aktualnyElement->nastepny = ostatniElement;
+        //Ustawiam ostatni element jako aktualny
+        aktualny_element = ostatni_element;
+
+        // TODO URGENT FIX TUTAJ 2
+        //Zastąp ostatni elementy_listy nowym
+        //Ustaw jego wartość oraz elementy_listy poprzedni na elementy_listy aktualny (były ostatni)
+        ostatni_element = new elementy_listy(wartosc, NULL, aktualny_element);
+        aktualny_element->nastepny = ostatni_element;
     }
-    //Zwiększ rozmiar listy o 1
+    //Zwiększam rozmiar listy
     rozmiar++;
 }
 
 void Lista::dodaj_na_pozycje(int wartosc, int pozycja) {
 
-    //Sprawdź czy wybrana pozycja jest pierwszą
-    if (pozycja == 0) {
-        Lista::dodaj_na_poczatek(wartosc);
-        return;
-    }
-
-    //Sprawdź czy w liście istnieje pozycja podana przez użytkownika
+    //Sprawdzam czy pozycja jest w liście
     if (pozycja < 0 || pozycja >= rozmiar) {
         cout << "W liście nie istnieje pozycja [" << pozycja << "]" << endl;
         return;
     }
 
-    //Sprawdź czy wybrana pozycja jest ostatnią
+    //Sprawdzam czy wybrana pozycja jest pierwszą
+    if (pozycja == 0) {
+        Lista::dodaj_na_poczatek(wartosc);
+        return;
+    }
+
+    //Sprawdzam czy pozycja jest ostatnią pozycją
     if (pozycja == rozmiar - 1) {
         dodaj_na_koniec(wartosc);
         return;
     }
 
-    //Sprawdź w której połowie listy znajduje się wybrany inne_elementy
+    //Sprawdź w której połowie listy znajduje się wybrany elementy_listy
     if (pozycja < rozmiar / 2) { //liczone od indeksu zerowego
 
-        //Przypisz za aktualny inne_elementy pierwszy
-        aktualnyElement = pierwszyElement;
+        //Przypisz za aktualny elementy_listy pierwszy
+        aktualny_element = pierwszy_element;
 
         //Przesuń wszyskie elementy o jeden dalej
         for (int i = 1; i < pozycja - 1; ++i) {
-            aktualnyElement = aktualnyElement->nastepny;
+            aktualny_element = aktualny_element->nastepny;
         }
 
     } else {
 
-        //Przypisz za aktualny inne_elementy ostatni
-        aktualnyElement = ostatniElement;
+        //Przypisz za aktualny elementy_listy ostatni
+        aktualny_element = ostatni_element;
 
         //Przesuń wszystkie elementy o jedną pozycję wstecz
         for (int i = 0; i < Lista::rozmiar - pozycja - 1; ++i) {
-            aktualnyElement = aktualnyElement->poprzedni;
+            aktualny_element = aktualny_element->poprzedni;
         }
 
     }
 
-    //Stwórz nowy inne_elementy listy z podanymi parametrami
-    inne_elementy *nowyElementListy = new inne_elementy(wartosc, aktualnyElement,
-                                                        aktualnyElement->nastepny);
+    //Stwórz nowy elementy_listy listy z podanymi parametrami
+    elementy_listy *nowyElementListy = new elementy_listy(wartosc, aktualny_element,
+                                                          aktualny_element->nastepny);
 
-    //przypisz nowy inne_elementy w odpowiednim miejscu tablicy
-    aktualnyElement->nastepny->poprzedni = nowyElementListy;
-    aktualnyElement->nastepny = nowyElementListy;
+    //przypisz nowy elementy_listy w odpowiednim miejscu tablicy
+    aktualny_element->nastepny->poprzedni = nowyElementListy;
+    aktualny_element->nastepny = nowyElementListy;
 
     //Zwiększ rozmiar listy
     rozmiar = rozmiar + 1;
@@ -121,22 +126,22 @@ void Lista::dodaj_na_pozycje(int wartosc, int pozycja) {
 
 void Lista::usun_pierwszy() {
 
-    //przypisz drugi inne_elementy jako aktualny
-    aktualnyElement = pierwszyElement->nastepny;
+    //przypisz drugi elementy_listy jako aktualny
+    aktualny_element = pierwszy_element->nastepny;
 
-    //Usuń pierwszy inne_elementy
-    delete pierwszyElement;
+    //Usuń pierwszy elementy_listy
+    delete pierwszy_element;
 
     //Sprawdź, czy w liście są jeszcze jakieś elementy
-    //Jeżeli tak, ustaw aktualny inne_elementy jako pierwszy
+    //Jeżeli tak, ustaw aktualny elementy_listy jako pierwszy
     //Jeżeli nie, wyzeruj elementy listy
     if (rozmiar > 1) {
-        aktualnyElement->poprzedni = NULL;
-        pierwszyElement = aktualnyElement;
+        aktualny_element->poprzedni = NULL;
+        pierwszy_element = aktualny_element;
     } else {
-        aktualnyElement = NULL;
-        pierwszyElement = NULL;
-        ostatniElement = NULL;
+        aktualny_element = NULL;
+        pierwszy_element = NULL;
+        ostatni_element = NULL;
     }
 
     //Zmniejsz rozmiar listy
@@ -145,21 +150,21 @@ void Lista::usun_pierwszy() {
 
 void Lista::usun_ostatni() {
 
-    //Przypisz przedostani inne_elementy jako aktualny
-    aktualnyElement = ostatniElement->poprzedni;
-    //Usuń ostatni inne_elementy
-    delete ostatniElement;
+    //Przypisz przedostani elementy_listy jako aktualny
+    aktualny_element = ostatni_element->poprzedni;
+    //Usuń ostatni elementy_listy
+    delete ostatni_element;
 
     //Sprawdź, czy w liście są jeszcze jakieś elementy
-    //Jeżeli tak, ustaw aktualny inne_elementy jako ostatni
+    //Jeżeli tak, ustaw aktualny elementy_listy jako ostatni
     //Jeżeli nie, wyzeruj elementy listy
     if (rozmiar > 1) {
-        aktualnyElement->nastepny = NULL;
-        ostatniElement = aktualnyElement;
+        aktualny_element->nastepny = NULL;
+        ostatni_element = aktualny_element;
     } else {
-        aktualnyElement = NULL;
-        pierwszyElement = NULL;
-        ostatniElement = NULL;
+        aktualny_element = NULL;
+        pierwszy_element = NULL;
+        ostatni_element = NULL;
     }
 
     //Zmniejsz rozmiar listy
@@ -186,30 +191,30 @@ void Lista::usun_na_pozycji(int pozycja) {
         return;
     }
 
-    //Sprawdź w której połowie listy znajduje się wybrany inne_elementy
+    //Sprawdź w której połowie listy znajduje się wybrany elementy_listy
     if (pozycja < ceil(rozmiar / 2)) {
-        //Przypisz za aktualny inne_elementy pierwszy
-        aktualnyElement = pierwszyElement;
+        //Przypisz za aktualny elementy_listy pierwszy
+        aktualny_element = pierwszy_element;
 
         //Przesuń wszyskie elementy o jeden dalej
         for (int i = 1; i < pozycja - 1; ++i) {
-            aktualnyElement = aktualnyElement->nastepny;
+            aktualny_element = aktualny_element->nastepny;
         }
     } else {
-        //Przypisz za aktualny inne_elementy ostatni
-        aktualnyElement = ostatniElement;
+        //Przypisz za aktualny elementy_listy ostatni
+        aktualny_element = ostatni_element;
 
         //Przesuń wszystkie elementy o jedną pozycję wstecz
         for (int i = 0; i < rozmiar - pozycja - 1; ++i) {
-            aktualnyElement = aktualnyElement->poprzedni;
+            aktualny_element = aktualny_element->poprzedni;
         }
     }
-    //Stwórz nowy inne_elementy listy z podanymi parametrami
-    inne_elementy *nowyElementListy = aktualnyElement->nastepny;
+    //Stwórz nowy elementy_listy listy z podanymi parametrami
+    elementy_listy *nowyElementListy = aktualny_element->nastepny;
 
-    //przypisz nowy inne_elementy w odpowiednim miejscu tablicy
-    aktualnyElement->nastepny = nowyElementListy->nastepny;
-    aktualnyElement->nastepny->poprzedni = nowyElementListy;
+    //przypisz nowy elementy_listy w odpowiednim miejscu tablicy
+    aktualny_element->nastepny = nowyElementListy->nastepny;
+    aktualny_element->nastepny->poprzedni = nowyElementListy;
 
     delete[]nowyElementListy;
 
@@ -231,15 +236,15 @@ void Lista::usun_na_pozycji_test(int pozycja) {
         usun_ostatni();
         return;
     }
-    inne_elementy *poprzedniElement = nullptr;
-    aktualnyElement = pierwszyElement;
+    elementy_listy *poprzedniElement = nullptr;
+    aktualny_element = pierwszy_element;
     for (int i = 1; i < pozycja; i++) { // przesuwamy sie do elementu na pozycji do usuniecia
-        poprzedniElement = aktualnyElement;
-        aktualnyElement = aktualnyElement->nastepny;
+        poprzedniElement = aktualny_element;
+        aktualny_element = aktualny_element->nastepny;
     }
-    poprzedniElement->nastepny = aktualnyElement->nastepny; // usuwamy inne_elementy ze srodkowej czesci listy
-    aktualnyElement->nastepny->poprzedni = poprzedniElement;
-    delete aktualnyElement;
+    poprzedniElement->nastepny = aktualny_element->nastepny; // usuwamy elementy_listy ze srodkowej czesci listy
+    aktualny_element->nastepny->poprzedni = poprzedniElement;
+    delete aktualny_element;
     rozmiar--;
 }
 
@@ -261,44 +266,41 @@ void Lista::usun_na_pozycji_test2(int pozycja) {
     }
 
     int i = 0;
-    inne_elementy *poprzedniElement = nullptr;
-    aktualnyElement = pierwszyElement;
+    elementy_listy *poprzedniElement = nullptr;
+    aktualny_element = pierwszy_element;
 
     while (i < pozycja) {
-        poprzedniElement = aktualnyElement;
-        aktualnyElement = aktualnyElement->nastepny;
+        poprzedniElement = aktualny_element;
+        aktualny_element = aktualny_element->nastepny;
         i++;
     }
 
-    poprzedniElement->nastepny = aktualnyElement->nastepny;
-    delete aktualnyElement;
-    aktualnyElement = nullptr;
+    poprzedniElement->nastepny = aktualny_element->nastepny;
+    delete aktualny_element;
+    aktualny_element = nullptr;
     rozmiar--;
 }
 
-bool Lista::znajdz_element(int wartosc) {
+void Lista::znajdz_element(int wartosc) {
 
-    //Jeżeli lista jest pusta, zwróć false
+    //sprawdzam czy lista jest pusta
     if (rozmiar == 0) {
-        return false;
+        return;
     }
 
-    //Przypisa pierwszy inne_elementy jako aktualny
-    aktualnyElement = pierwszyElement;
+    //Przypisuje pierwszy jako aktualny element
+    aktualny_element = pierwszy_element;
 
-    //Przeszukaj listę pod kątem wartości
+    //Przeszukuje liste
     for (int i = 0; i < rozmiar; i++) {
-        if (aktualnyElement->wartosc == wartosc) {
-            cout << "Szukana wartość zajmuje w liście pozycję [" << i << "]" << endl;
-            return true;
+        if (aktualny_element->wartosc == wartosc) {
+            cout << "wartość jest na pozycji: "<< i << endl;
+            return;
         }
 
-        aktualnyElement = aktualnyElement->nastepny;
+        aktualny_element = aktualny_element->nastepny;
     }
-
-    //Jeżeli wartość nie wystąpiła w żadnej iteracji listy zwróć false
-    cout << "Szukana wartość nie występuje w liście" << endl;
-    return false;
+    cout << "Nie ma takiej wartości w tablicy" << endl;
 }
 
 void Lista::wypisz_liste() {
@@ -307,24 +309,24 @@ void Lista::wypisz_liste() {
         return;
     }
 
-    //Ustaw jako akutualny inne_elementy pierwszy inne_elementy listy
-    aktualnyElement = pierwszyElement;
+    //Przypisuje pierwszy jako aktualny element
+    aktualny_element = pierwszy_element;
 
     for (int i = 0; i < rozmiar; i++) {
 
-        cout << "[" << i << "] " << aktualnyElement->wartosc << endl;
+        cout << "[" << i << "] " << aktualny_element->wartosc << endl;
 
-        //Przypisz kolejny inne_elementy listy jako aktualny
-        aktualnyElement = aktualnyElement->nastepny;
+        //Przypisuje kolejne elementy jako aktualne
+        aktualny_element = aktualny_element->nastepny;
 
     }
 }
 
 // TODO co z tym
-inne_elementy::inne_elementy(int wartosc, inne_elementy *nastepny, inne_elementy *poprzedni) {
+elementy_listy::elementy_listy(int wartosc, elementy_listy *nastepny, elementy_listy *poprzedni) {
 
-    inne_elementy::wartosc = wartosc;
-    inne_elementy::nastepny = nastepny;
-    inne_elementy::poprzedni = poprzedni;
+    elementy_listy::wartosc = wartosc;
+    elementy_listy::nastepny = nastepny;
+    elementy_listy::poprzedni = poprzedni;
 
 }

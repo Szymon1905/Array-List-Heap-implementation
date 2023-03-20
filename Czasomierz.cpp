@@ -13,6 +13,7 @@ void Czasomierz::Stop() {
 
 // TODO poprawić metode
 
+// metoda mierzaca czas z użyciem high_resolution_clock z chrono
 void Czasomierz::Zmierzony_czas() {
     long zmierzony_czas = duration_cast<nanoseconds>(Czasomierz::stop - Czasomierz::start).count();
     cout << "Czasomierz wykonania: " << zmierzony_czas << "ns" << endl;
