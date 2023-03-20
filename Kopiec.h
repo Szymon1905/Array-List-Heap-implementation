@@ -7,7 +7,7 @@ class Kopiec_binarny {
 public:
     Kopiec_binarny() {}
 
-    void heapify(int);
+    void popraw(int);
 
     int usun_ze_szczytu();
 
@@ -15,6 +15,6 @@ public:
 
     void dodaj(int value);
 
-    bool czy_istnieje(int value);
+    bool czy_istnieje(int wartosc);
 
 };

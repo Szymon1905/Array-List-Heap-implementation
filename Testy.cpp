@@ -1,13 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-#include <cstdlib> // for the system function
-#include <direct.h> // for mkdir and chdir on Windows
+#include <cstdlib> // funckje systemowe
+#include <direct.h> //mkdir w windows
 #include <random>
 #include "Czasomierz.h"
 #include "Tablica.h"
 #include "Lista.h"
-#include "Stary_Kopiec.h"
 #include "Testy.h"
 #include "Kopiec.h"
 using namespace std;
