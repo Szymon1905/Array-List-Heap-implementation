@@ -6,7 +6,7 @@ using namespace std;
 //Konstruktor inicjalizuje zmienne klasowe
 Tablica::Tablica() {
 
-    Tablica::wskaznikNaHead = NULL;
+    Tablica::wskaznik = NULL;
     Tablica::rozmiar = 0;
 
 }
@@ -14,8 +14,8 @@ Tablica::Tablica() {
 //Destruktor zwalnia pamięć tablicy, jeżeli istnieje
 Tablica::~Tablica() {
 
-    if (wskaznikNaHead != NULL) {
-        delete[]wskaznikNaHead;
+    if (wskaznik != NULL) {
+        delete[]wskaznik;
     }
 }
 
@@ -28,13 +28,13 @@ void Tablica::dodaj_na_poczatek(int wartosc) {
 
     //Przepisz dane ze starej tablicy do nowej
     for (int i = 0; i < rozmiar; i++) {
-        nowyWskaznikNaHead[i + 1] = wskaznikNaHead[i];
+        nowyWskaznikNaHead[i + 1] = wskaznik[i];
     }
 
     //Zwolnij pamięć poprzedniej tablicy
     //Zastąp wskaźnik na głowę tablicy nowym
-    delete wskaznikNaHead;
-    wskaznikNaHead = nowyWskaznikNaHead;
+    delete wskaznik;
+    wskaznik = nowyWskaznikNaHead;
 
     //Zwiększ rozmiar tablicy o 1
     rozmiar++;
@@ -50,13 +50,13 @@ void Tablica::dodaj_na_koniec(int wartosc) {
 
     //Przepisz dane ze starej tablicy do nowej
     for (int i = 0; i < rozmiar; i++) {
-        nowyWskaznikNaHead[i] = wskaznikNaHead[i];
+        nowyWskaznikNaHead[i] = wskaznik[i];
     }
 
     //Zwolnij pamięć poprzedniej tablicy
     //Zastąp wskaźnik na głowę tablicy nowym
-    delete wskaznikNaHead;
-    wskaznikNaHead = nowyWskaznikNaHead;
+    delete wskaznik;
+    wskaznik = nowyWskaznikNaHead;
 
     //Zwiększ rozmiar tablicy o 1
     rozmiar++;
@@ -78,19 +78,19 @@ void Tablica::dodaj_na_pozycje(int wartosc, int pozycja) {
         //Przepisz dane ze starej tablicy do nowej
         //Przerwij przed wybraną pozycją
         for (int i = 0; i < pozycja; i++) {
-            nowyWskaznikNaHead[i] = wskaznikNaHead[i];
+            nowyWskaznikNaHead[i] = wskaznik[i];
         }
 
         //Uzupełnij dane w tablicy po wybranej pozycji
         //Przepisz dane ze starej tablicy do nowej
         for (int i = pozycja; i < rozmiar; i++) {
-            nowyWskaznikNaHead[i + 1] = wskaznikNaHead[i];
+            nowyWskaznikNaHead[i + 1] = wskaznik[i];
         }
 
         //Zwolnij pamięć poprzedniej tablicy
         //Zastąp wskaźnik na głowę tablicy nowym
-        delete wskaznikNaHead;
-        wskaznikNaHead = nowyWskaznikNaHead;
+        delete wskaznik;
+        wskaznik = nowyWskaznikNaHead;
 
         //Zwiększ rozmiar tablicy o 1
         rozmiar++;
@@ -107,13 +107,13 @@ void Tablica::usun_ostatni() {
 
         //Przepisz elementy starej tablicy poza ostatnim
         for (int i = 0; i < rozmiar - 1; i++) {
-            nowyWskaznikNaHead[i] = wskaznikNaHead[i];
+            nowyWskaznikNaHead[i] = wskaznik[i];
         }
 
         //zwolnij pamięć po starym wskaźniku
         //Przypisz nowy wskaźnik na jego miejsce
-        delete[] wskaznikNaHead;
-        wskaznikNaHead = nowyWskaznikNaHead;
+        delete[] wskaznik;
+        wskaznik = nowyWskaznikNaHead;
 
         //Zmniejsz rozmiar tablicy o 1
         rozmiar--;
@@ -128,17 +128,17 @@ void Tablica::usun_pierwszy() {
     //Sprawdź, czy tablica nie jest pusta
     if (rozmiar > 0) {
         //Zaalokuj pamięć na tablicę mniejszą o jeden inne_elementy niż poprzednio
-        int *nowyWskaznikNaHead = new int[rozmiar - 1];
+        int *nowy_wskaznik = new int[rozmiar - 1];
 
         //Przepisz elementy starej tablicy poza pierwszym
         for (int i = 0; i < rozmiar - 1; i++) {
-            nowyWskaznikNaHead[i] = wskaznikNaHead[i + 1];
+            nowy_wskaznik[i] = wskaznik[i + 1];
         }
 
         //zwolnij pamięć po starym wskaźniku
         //Przypisz nowy wskaźnik na jego miejsce
-        delete[] wskaznikNaHead;
-        wskaznikNaHead = nowyWskaznikNaHead;
+        delete[] wskaznik;
+        wskaznik = nowy_wskaznik;
 
         //Zmniejsz rozmiar tablicy o 1
         rozmiar--;
@@ -158,18 +158,18 @@ void Tablica::usun_na_pozycji(int pozycja) {
 
         //Przepisz elementy do wybranej pozycji
         for (int i = 0; i < pozycja; i++) {
-            nowyWskaznikNaHead[i] = wskaznikNaHead[i];
+            nowyWskaznikNaHead[i] = wskaznik[i];
         }
 
         //Przepisz elementy po wybranej pozycji
         for (int i = pozycja; i < rozmiar - 1; i++) {
-            nowyWskaznikNaHead[i] = wskaznikNaHead[i + 1];
+            nowyWskaznikNaHead[i] = wskaznik[i + 1];
         }
 
         //zwolnij pamięć po starym wskaźniku
         //Przypisz nowy wskaźnik na jego miejsce
-        delete[] wskaznikNaHead;
-        wskaznikNaHead = nowyWskaznikNaHead;
+        delete[] wskaznik;
+        wskaznik = nowyWskaznikNaHead;
 
         //Zmniejsz rozmiar tablicy o 1
         rozmiar--;
@@ -183,7 +183,7 @@ bool Tablica::znajdz_element(int wartosc) {
     //Przeszukaj tablicę pod kątem wartości
     for (int i = 0; i < rozmiar; i++) {
         //Jeżeli wartość wystąpi w iteracji zwróc true
-        if (wskaznikNaHead[i] == wartosc) {
+        if (wskaznik[i] == wartosc) {
             cout << "Szukana wartość zajmuje w tablicy pozycję [" << i << "]" << endl;
             return true;
         }
@@ -197,9 +197,9 @@ void Tablica::wypisz_tablice() {
     cout << "Aktualny stan tablicy:" << endl;
     //Jeżeli tablica nie ma elementów, wyświetl komunikat
     //W przeciwnym wypadku wydrukuj wszystkie elementy tablicy
-    if (wskaznikNaHead != NULL) {
+    if (wskaznik != NULL) {
         for (int i = 0; i < rozmiar; i++) {
-            cout << "    [" << i << "] " << wskaznikNaHead[i] << endl;
+            cout << "    [" << i << "] " << wskaznik[i] << endl;
         }
     } else {
         cout << "    Tablica nie ma żadnych elementów" << endl;

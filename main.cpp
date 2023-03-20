@@ -12,18 +12,17 @@ int main() {
     SetConsoleOutputCP(CP_UTF8); // Konsola ustwiona na utf-8 aby były Polskie litery
     cout << "Autor: Szymon Borzdyński" << endl;
 
-    //Inicjalizacja klasy testującej
+
     Testy testy;
-
-    int opcja_poczatkowa;
     Opcje opcja;
+    int opcja_poczatkowa;
 
-    // Menu
+
     while (true) {
         cout << "Opcje:" << endl;
         cout << "1 - Tablica Dynamiczna" << endl;
         cout << "2 - Lista Dwukierunkowa" << endl;
-        cout << "3 - Stary_Kopiec Binarny" << endl;
+        cout << "3 - Kopiec Binarny" << endl;
         cout << "4 - Testy" << endl;
         cout << "5 - Wyjście" << endl << endl;
         cout << "Wybór: ";
@@ -34,7 +33,7 @@ int main() {
         switch (opcja_poczatkowa) {
             default:
                 //system("CLS");
-                cout << "Błędna opcja 2" << endl<<endl;
+                cout << "Błędna opcja 1" << endl<<endl;
                 break;
             case 1:
                 cout << "Tablica dynamiczna" << endl;
@@ -47,7 +46,7 @@ int main() {
                 break;
 
             case 3:
-                cout << "Stary_Kopiec binarny" << endl;
+                cout << "Kopiec binarny" << endl;
                 opcja.opcje_kopca();
                 break;
 
@@ -72,7 +71,7 @@ int main() {
                         continue;
                     default:
                         //system("CLS");
-                        cout << "Błędna opcja 1 " << endl<<endl;
+                        cout << "Błędna opcja 2 " << endl<<endl;
                 }
 
             case 5:
@@ -112,6 +111,8 @@ int main() {
 
                 kopiecus.wypisz_kopiec();
 
+                string czekaj;
+                cin>>czekaj;
                 return 0;
         }
     }

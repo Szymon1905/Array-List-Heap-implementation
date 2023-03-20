@@ -8,7 +8,7 @@
 using namespace std;
 using namespace std::chrono;
 
-class Czas {
+class Czasomierz {
 public:
     high_resolution_clock::time_point start;
     high_resolution_clock::time_point stop;

@@ -10,7 +10,7 @@ using namespace std;
 
 
 void Opcje::opcja_tablica() {
-    Czas czas;
+    Czasomierz czas;
     Tablica tablica;
     int wybor;
     int wartosc;
@@ -114,7 +114,7 @@ void Opcje::opcja_tablica() {
 }
 
 void Opcje::opcje_listy() {
-    Czas czas;
+    Czasomierz czas;
     Lista lista;
     int wybor;
     int wartosc;
@@ -181,10 +181,11 @@ void Opcje::opcje_listy() {
                 break;
 
             case 6:
+                // TODO sprawdzic czy działa poprawnie ta metoda
                 cout << "Podaj pozycję: ";
                 cin >> pozycja;
                 czas.Start();
-                lista.usun_na_pozycji(pozycja);
+                lista.usun_na_pozycji_test2(pozycja);
                 czas.Stop();
                 czas.Zmierzony_czas();
                 break;
@@ -216,7 +217,7 @@ void Opcje::opcje_listy() {
 }
 
 void Opcje::opcje_kopca() {
-    Czas czas;
+    Czasomierz czas;
     Kopiec_binarny kopiec;
     int wybor;
     int wartosc;

@@ -4,7 +4,7 @@
 #include <cstdlib> // for the system function
 #include <direct.h> // for mkdir and chdir on Windows
 #include <random>
-#include "Czas.h"
+#include "Czasomierz.h"
 #include "Tablica.h"
 #include "Lista.h"
 #include "Stary_Kopiec.h"
@@ -32,7 +32,7 @@ int losuj(int rozmiar) {
 
 void Testy::testTablicy() {
     srand(time(NULL));
-    Czas czas;
+    Czasomierz czas;
     Tablica tablica;
     int wartosc;
     string daneWyjsciowe;
@@ -170,7 +170,7 @@ void Testy::testTablicy() {
 }
 
 void Testy::testListy(){
-    Czas czas;
+    Czasomierz czas;
     Lista lista;
     int wartosc;
     string daneWyjsciowe;
@@ -307,7 +307,7 @@ void Testy::testListy(){
 // TODO fix funkcji losującej
 
 void Testy::testKopca(){
-    Czas czas;
+    Czasomierz czas;
     Kopiec_binarny kopiec;
     int wartosc;
     string daneWyjsciowe;

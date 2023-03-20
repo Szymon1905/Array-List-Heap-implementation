@@ -243,6 +243,7 @@ void Lista::usun_na_pozycji_test(int pozycja) {
     rozmiar--;
 }
 
+// TODO sprawdzic dla 3 elementow 32,86,53
 void Lista::usun_na_pozycji_test2(int pozycja) {
     if (pozycja < 0 || pozycja >= rozmiar) {
         cout << "Niepoprawna pozycja" << endl;

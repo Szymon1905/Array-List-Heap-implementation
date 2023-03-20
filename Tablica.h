@@ -5,7 +5,7 @@ class Tablica {
 
 public:
 //Zmienne
-    int *wskaznikNaHead;
+    int *wskaznik;
 
     int rozmiar;
 
