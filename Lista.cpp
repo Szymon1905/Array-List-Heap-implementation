@@ -278,7 +278,7 @@ void Lista::usun_na_pozycji_test2(int pozycja) {
 
 bool Lista::znajdz_element(int wartosc) {
 
-    //Jeżeli lista jest pusta, zwróć false z automatu
+    //Jeżeli lista jest pusta, zwróć false
     if (rozmiar == 0) {
         return false;
     }

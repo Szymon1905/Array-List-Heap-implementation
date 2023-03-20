@@ -47,12 +47,12 @@ int Kopiec_binarny::usun_ze_szczytu() {
         return -1;
     }
 
-    int root = kopiec[0];
+    int szczyt = kopiec[0];
     kopiec[0] = kopiec.back();
     kopiec.pop_back();
     popraw(0);
 
-    return root;
+    return szczyt;
 }
 
 void Kopiec_binarny::wypisz_kopiec() {

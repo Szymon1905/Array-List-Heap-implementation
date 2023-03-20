@@ -3,7 +3,8 @@
 
 using namespace std;
 // TODO refactor tablicy
-//Konstruktor inicjalizuje zmienne klasowe
+
+//Konstruktor
 Tablica::Tablica() {
 
     Tablica::wskaznik = NULL;
@@ -11,7 +12,7 @@ Tablica::Tablica() {
 
 }
 
-//Destruktor zwalnia pamięć tablicy, jeżeli istnieje
+//Destruktor
 Tablica::~Tablica() {
 
     if (wskaznik != NULL) {
@@ -21,78 +22,81 @@ Tablica::~Tablica() {
 
 void Tablica::dodaj_na_poczatek(int wartosc) {
 
-    //Zaalokuj pamięć na tablicę większa o jeden inne_elementy niż poprzednio
-    //Przypisz podaną wartość jako pierwszy inne_elementy tablicy
-    int *nowyWskaznikNaHead = new int[rozmiar + 1];
-    nowyWskaznikNaHead[0] = wartosc;
+    //Alokuje pamięć na tablicę o jeden większą
+    int *nowy_wskaznik = new int[rozmiar + 1];
 
-    //Przepisz dane ze starej tablicy do nowej
+    //Przypisuje nowy pierwszy element
+    nowy_wskaznik[0] = wartosc;
+
+    //Przepisuje dane ze starej tablicy do nowej
     for (int i = 0; i < rozmiar; i++) {
-        nowyWskaznikNaHead[i + 1] = wskaznik[i];
+        nowy_wskaznik[i + 1] = wskaznik[i];
     }
 
-    //Zwolnij pamięć poprzedniej tablicy
-    //Zastąp wskaźnik na głowę tablicy nowym
+    //Zwalniam pamięć po starej tablicy
     delete wskaznik;
-    wskaznik = nowyWskaznikNaHead;
 
-    //Zwiększ rozmiar tablicy o 1
+    //Daje wskaźnik na nowy
+    wskaznik = nowy_wskaznik;
+
+    //Zwiększam rozmiar tablicy
     rozmiar++;
 
 }
 
 void Tablica::dodaj_na_koniec(int wartosc) {
 
-    //Zaalokuj pamięć na tablicę większa o jeden inne_elementy niż poprzednio
-    //Przypisz podaną wartość jako ostatni inne_elementy tablicy
-    int *nowyWskaznikNaHead = new int[rozmiar + 1];
-    nowyWskaznikNaHead[rozmiar] = wartosc;
+    //Alokuje pamięć na tablicę o jeden większą
+    int *nowy_wskaznik = new int[rozmiar + 1];
 
-    //Przepisz dane ze starej tablicy do nowej
+    //Przypisuje nowy ostatni element
+    nowy_wskaznik[rozmiar] = wartosc;
+
+    //Przepisuje dane ze starej tablicy do nowej
     for (int i = 0; i < rozmiar; i++) {
-        nowyWskaznikNaHead[i] = wskaznik[i];
+        nowy_wskaznik[i] = wskaznik[i];
     }
 
-    //Zwolnij pamięć poprzedniej tablicy
-    //Zastąp wskaźnik na głowę tablicy nowym
+    //Zwalniam pamięć po starej tablicy
     delete wskaznik;
-    wskaznik = nowyWskaznikNaHead;
 
-    //Zwiększ rozmiar tablicy o 1
+    //Daje wskaźnik na nowy
+    wskaznik = nowy_wskaznik;
+
+    //Zwiększam rozmiar tablicy
     rozmiar++;
 
 }
 
 void Tablica::dodaj_na_pozycje(int wartosc, int pozycja) {
-    //Sprawdź, czy wybrana pozycja znajduje się w tablicy
-    //Jeżeli nie, anuluj dodawanie
+    //Sprawdam czy taka pozycja jest w tablicy
     if (pozycja < 0 || pozycja > rozmiar) {
         cout << "W tablicy nie istnieje pozycja [" << pozycja << "]!" << endl;
     } else {
 
-        //Zaalokuj pamięć na tablicę większa o jeden inne_elementy niż poprzednio
-        //Przypisz podaną wartość jako inne_elementy tablicy na wybranej pozycji
-        int *nowyWskaznikNaHead = new int[rozmiar + 1];
-        nowyWskaznikNaHead[pozycja] = wartosc;
+        //Alokuje pamięć na tablicę o jeden większą
+        int *nowy_wskaznik = new int[rozmiar + 1];
 
-        //Przepisz dane ze starej tablicy do nowej
-        //Przerwij przed wybraną pozycją
+        //Przypisuje wartość jako inne_elementy tablicy na wybranej pozycji
+        nowy_wskaznik[pozycja] = wartosc;
+
+        //Przepisuje dane przed pozycją ze starej do nowej tablicy
         for (int i = 0; i < pozycja; i++) {
-            nowyWskaznikNaHead[i] = wskaznik[i];
+            nowy_wskaznik[i] = wskaznik[i];
         }
 
-        //Uzupełnij dane w tablicy po wybranej pozycji
-        //Przepisz dane ze starej tablicy do nowej
+        //Przepisuje dane po pozycji ze starej do nowej tablicy
         for (int i = pozycja; i < rozmiar; i++) {
-            nowyWskaznikNaHead[i + 1] = wskaznik[i];
+            nowy_wskaznik[i + 1] = wskaznik[i];
         }
 
-        //Zwolnij pamięć poprzedniej tablicy
-        //Zastąp wskaźnik na głowę tablicy nowym
+        //Zwalniam pamięć po starej tablicy
         delete wskaznik;
-        wskaznik = nowyWskaznikNaHead;
 
-        //Zwiększ rozmiar tablicy o 1
+        //Daje wskaźnik na nowy
+        wskaznik = nowy_wskaznik;
+
+        //Zwiększam rozmiar tablicy
         rozmiar++;
 
     }
@@ -100,47 +104,49 @@ void Tablica::dodaj_na_pozycje(int wartosc, int pozycja) {
 }
 
 void Tablica::usun_ostatni() {
-    //Sprawdź, czy tablica nie jest pusta
+    //Sprawdzam, czy tablica nie jest pusta
     if (rozmiar > 0) {
-        //Zaalokuj pamięć na tablicę mniejszą o jeden inne_elementy niż poprzednio
-        int *nowyWskaznikNaHead = new int[rozmiar - 1];
+        //Alokuje pamięć na tablicę o jeden mniejszą
+        int *nowy_wskaznik = new int[rozmiar - 1];
 
-        //Przepisz elementy starej tablicy poza ostatnim
+        //Przepisuje elementy starej tablicy bez ostatniego
         for (int i = 0; i < rozmiar - 1; i++) {
-            nowyWskaznikNaHead[i] = wskaznik[i];
+            nowy_wskaznik[i] = wskaznik[i];
         }
 
-        //zwolnij pamięć po starym wskaźniku
-        //Przypisz nowy wskaźnik na jego miejsce
+        //Zwalniam pamięć po starej tablicy
         delete[] wskaznik;
-        wskaznik = nowyWskaznikNaHead;
 
-        //Zmniejsz rozmiar tablicy o 1
+        //Daje wskaźnik na nowy
+        wskaznik = nowy_wskaznik;
+
+        //Zmniejszam rozmiar tablicy
         rozmiar--;
     } else {
-        cout << "W tablicy nie ma żadnego elementu!" << endl;
+        cout << "tablica jest pusta" << endl;
     }
 
 }
 
 void Tablica::usun_pierwszy() {
 
-    //Sprawdź, czy tablica nie jest pusta
+    //Sprawdam, czy tablica nie jest pusta
     if (rozmiar > 0) {
-        //Zaalokuj pamięć na tablicę mniejszą o jeden inne_elementy niż poprzednio
+        //Alokuje pamięć na tablicę o jeden mniejszą
         int *nowy_wskaznik = new int[rozmiar - 1];
 
-        //Przepisz elementy starej tablicy poza pierwszym
+        //Przepisuje elementy starej tablicy bez pierwszego
         for (int i = 0; i < rozmiar - 1; i++) {
             nowy_wskaznik[i] = wskaznik[i + 1];
         }
 
-        //zwolnij pamięć po starym wskaźniku
-        //Przypisz nowy wskaźnik na jego miejsce
+        //Zwalniam pamięć po starej tablicy
         delete[] wskaznik;
+
+        //Daje wskaźnik na nowy
         wskaznik = nowy_wskaznik;
 
-        //Zmniejsz rozmiar tablicy o 1
+        //Zmniejszam rozmiar tablicy
         rozmiar--;
     } else {
         cout << "W tablicy nie ma żadnego elementu!" << endl;
@@ -150,31 +156,31 @@ void Tablica::usun_pierwszy() {
 
 void Tablica::usun_na_pozycji(int pozycja) {
 
-    //Sprawdź, czy tablica nie jest pusta
-    //Sprawdż czy pozycja nie wykracza poza tablicę
+    //Sprawdzam, czy tablica nie jest pusta i czy pozycja jest prawidłowa
     if (rozmiar > 0 || pozycja > 0 || pozycja < rozmiar) {
-        //Zaalokuj pamięć na tablicę mniejszą o jeden inne_elementy niż poprzednio
-        int *nowyWskaznikNaHead = new int[rozmiar - 1];
+        //Alokuje pamięć na tablicę o jeden mniejszą
+        int *nowy_wskaznik = new int[rozmiar - 1];
 
-        //Przepisz elementy do wybranej pozycji
+        //Przepisuje dane do pozycji ze starej do nowej tablicy
         for (int i = 0; i < pozycja; i++) {
-            nowyWskaznikNaHead[i] = wskaznik[i];
+            nowy_wskaznik[i] = wskaznik[i];
         }
 
-        //Przepisz elementy po wybranej pozycji
+        //Przepisuje dane po pozycji ze starej do nowej tablicy
         for (int i = pozycja; i < rozmiar - 1; i++) {
-            nowyWskaznikNaHead[i] = wskaznik[i + 1];
+            nowy_wskaznik[i] = wskaznik[i + 1];
         }
 
-        //zwolnij pamięć po starym wskaźniku
-        //Przypisz nowy wskaźnik na jego miejsce
+        //Zwalniam pamięć po starej tablicy
         delete[] wskaznik;
-        wskaznik = nowyWskaznikNaHead;
 
-        //Zmniejsz rozmiar tablicy o 1
+        //Daje wskaźnik na nowy
+        wskaznik = nowy_wskaznik;
+
+        //Zmniejszam rozmiar tablicy
         rozmiar--;
     } else {
-        cout << "W tablicy nie istnieje pozycja [" << pozycja << "]!" << endl;
+        cout << "Nie ma takiej pozycji" << endl;
     }
 }
 
@@ -184,19 +190,19 @@ bool Tablica::znajdz_element(int wartosc) {
     for (int i = 0; i < rozmiar; i++) {
         //Jeżeli wartość wystąpi w iteracji zwróc true
         if (wskaznik[i] == wartosc) {
-            cout << "Szukana wartość zajmuje w tablicy pozycję [" << i << "]" << endl;
+            cout << "wartość jest na pozcyji: "<< i << endl;
             return true;
         }
     }
-    //Jeżeli wartość nie wystąpiła w żadnej iteracji tabeli zwróć false
-    cout << "Szukana wartość nie występuje w tablicy" << endl;
+
+    cout << "Nie ma takiej wartości w tablicy" << endl;
     return false;
 }
 
 void Tablica::wypisz_tablice() {
-    cout << "Aktualny stan tablicy:" << endl;
-    //Jeżeli tablica nie ma elementów, wyświetl komunikat
-    //W przeciwnym wypadku wydrukuj wszystkie elementy tablicy
+    cout << "Tablica:" << endl;
+
+    //Sprawdzam czy wskaznik nie jest null i wypisuje tablice
     if (wskaznik != NULL) {
         for (int i = 0; i < rozmiar; i++) {
             cout << "    [" << i << "] " << wskaznik[i] << endl;
