@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-#include <cstdlib> // funckje systemowe
 #include <direct.h> //mkdir w windows
 #include <random>
 #include "Czasomierz.h"
@@ -27,7 +26,7 @@ int losuj(int rozmiar) {
     return randomNum;
 }
 
-// TODO elimninacja plik
+
 
 void Testy::testTablicy() {
     Czasomierz czas;
@@ -112,8 +111,6 @@ void Testy::testTablicy() {
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         //Wypełnia tablicę wartościami
-
-
         plikWejsciowy >> wartosc;
 
         czas.Start();
@@ -327,7 +324,7 @@ void Testy::testListy(){
     chdir("..");
 }
 
-// TODO fix funkcji losującej
+
 
 void Testy::testKopca(){
     Czasomierz czas;
@@ -422,12 +419,6 @@ void Testy::testKopca(){
     chdir("..");
 }
 
-
-
-
-//plikWejsciowy.close();
-//chdir("..");
-//return;
-// TODO usun_ze_szczytu
+// TODO losuj dane wejściowe
 
 // Szymon Borzdyński 19.03.2023

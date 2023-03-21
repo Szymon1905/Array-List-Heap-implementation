@@ -18,5 +18,7 @@ public:
 
     void czy_istnieje(int wartosc);
 
-    void kopiec_w_ASCII();
+    void kopiec_w_ASCII_do_prawej();
+
+    void kopiec_w_ASCII2_do_srodka();
 };

@@ -2,12 +2,13 @@
 #include "Tablica.h"
 
 using namespace std;
-// TODO refactor tablicy
+
+// TODO null na nullptr
 
 //Konstruktor
 Tablica::Tablica() {
 
-    Tablica::wskaznik = NULL;
+    Tablica::wskaznik = nullptr;
     Tablica::rozmiar = 0;
 
 }
@@ -15,7 +16,7 @@ Tablica::Tablica() {
 //Destruktor
 Tablica::~Tablica() {
 
-    if (wskaznik != NULL) {
+    if (wskaznik != nullptr) {
         delete[]wskaznik;
     }
 }
@@ -201,10 +202,10 @@ void Tablica::wypisz_tablice() {
     cout << "Tablica:" << endl;
 
     //Sprawdzam czy wskaznik nie jest null i wypisuje tablice
-    if (wskaznik != NULL) {
+    cout << "indeks  -  wartość "<< endl;
+    if (wskaznik != nullptr) {
         for (int i = 0; i < rozmiar; i++) {
-            // TODO zmiana takich
-            cout << "    [" << i << "] " << wskaznik[i] << endl;
+            cout << i << "  -  " << wskaznik[i] << endl;
         }
     } else {
         cout << "Tablica nie ma żadnych elementów" << endl;

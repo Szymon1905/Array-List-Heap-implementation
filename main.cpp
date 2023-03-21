@@ -116,7 +116,9 @@ int main() {
                 */
                 kopiecus.wypisz_kopiec();
 
-                kopiecus.kopiec_w_ASCII();
+                kopiecus.kopiec_w_ASCII_do_prawej();
+
+                kopiecus.kopiec_w_ASCII2_do_srodka();
 
                 cin>>opcja_poczatkowa;
                 return 0;

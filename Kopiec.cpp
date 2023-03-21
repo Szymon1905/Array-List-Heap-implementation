@@ -6,22 +6,24 @@
 
 using namespace std;
 
-//TODO refactor nazw
 
 // Poprawia struktrurę aby był zachowany warunek kopca
 void Kopiec_binarny::popraw(int indeks) {
-    int lewy = indeks * 2 + 1;
-    int prawy = indeks * 2 + 2;
-    int najwiekszy = indeks;
+    int lewy = indeks * 2 + 1; // Oblicz indeks lewego dziecka
+    int prawy = indeks * 2 + 2; // Oblicz indeks prawego dziecka
+    int najwiekszy = indeks; // najwiekszy element jest rodzicem
 
+    // Jeśli lewe dziekco istnieje i jest większe niż rodzic to zaktualizuj najwiekszy najwiekszky element
     if (lewy < kopiec.size() && kopiec[lewy] > kopiec[najwiekszy]) {
         najwiekszy = lewy;
     }
 
+    // Jak wyżej ale dla prawego
     if (prawy < kopiec.size() && kopiec[prawy] > kopiec[najwiekszy]) {
         najwiekszy = prawy;
     }
 
+    // jeśli największy element nie jest rodzicem, zamień rodzica z polem z największym elementem i uruchom rekurencje
     if (najwiekszy != indeks) {
         swap(kopiec[indeks], kopiec[najwiekszy]);
         popraw(najwiekszy);
@@ -31,38 +33,39 @@ void Kopiec_binarny::popraw(int indeks) {
 
 
 void Kopiec_binarny::dodaj(int value) {
-    kopiec.push_back(value);
+    kopiec.push_back(value); // Dodać nowy element na końcu wektora
 
-    int index = kopiec.size() - 1;
-    int parent = (index - 1) / 2;
+    int pozycja = kopiec.size() - 1; // pozycja nowego elementu
+    int rodzic = (pozycja - 1) / 2; //  pozycja rodzica
 
-    while (index > 0 && kopiec[parent] < kopiec[index]) {
-        swap(kopiec[parent], kopiec[index]);
-        index = parent;
-        parent = (index - 1) / 2;
+    //Jeśli nowy element nie jest na szczycie i wartość jest większa niż rodzic to zamieniam miejscami
+    while (pozycja > 0 && kopiec[rodzic] < kopiec[pozycja]) {
+        swap(kopiec[rodzic], kopiec[pozycja]);
+        pozycja = rodzic;
+        rodzic = (pozycja - 1) / 2;
     }
-    rozmiar_kopca++;
+    rozmiar_kopca++; // zwiększam kopiec
 }
 
 int Kopiec_binarny::usun_ze_szczytu() {
     if (kopiec.empty()) {
-        cerr << "Heap is empty" << endl;
+        cerr << "Kopiec jest pusty" << endl;
         return -1;
     }
 
-    int szczyt = kopiec[0];
-    kopiec[0] = kopiec.back();
-    kopiec.pop_back();
-    popraw(0);
+    int szczyt = kopiec[0]; // wartość kopca
+    kopiec[0] = kopiec.back(); // Zamieniam szcyt z ostatnim elementem kopca
+    kopiec.pop_back(); // usuwam ostatni element kopca
+    popraw(0); // poprawiam kopiec aby jego warunek był zachowany
 
-    rozmiar_kopca--;
-    return szczyt;
+    rozmiar_kopca--; // zmniejszam kopiec kopiec
+    return szczyt; // zwracam rozmiar kopca
 }
 
-// TODO Buchalski kazał wypisac to jak w ASCII
+// stara metoda wypisania kopca
 void Kopiec_binarny::wypisz_kopiec() {
-    for (int i = 0; i < kopiec.size(); ++i) {
-        cout << kopiec[i] << " ";
+    for (int i : kopiec) {
+        cout << i << " ";
     }
     cout << endl;
 }
@@ -76,29 +79,66 @@ void Kopiec_binarny::czy_istnieje(int wartosc) {
     cout << "Nie ma takiej wartości w kopcu" << endl;
 }
 
-void Kopiec_binarny::kopiec_w_ASCII() {
-    cout<<endl;
-    int height = floor(log2(kopiec.size())) + 1;
-    int max_width = pow(2, height) * 4;
 
-    int index = 0;
-    int current_level = 1;
-    int current_node_count = 1;
-    while (index < kopiec.size()) {
+void Kopiec_binarny::kopiec_w_ASCII_do_prawej() {
+    cout<<endl;
+    int height = floor(log2(kopiec.size())) + 1; // Obliczam wysokość drzewa
+    int szerokosc = pow(2, height) * 4; // Obliczam max szerokość wiersza
+
+    int index = 0; // Indeks  węzła
+    int current_level = 1; //poziom drzewa
+    int current_node_count = 1; // Liczba węzłów na bieżącym poziomie
+    while (index < kopiec.size()) { // obliczam ilość spacji
         for (int i = 0; i < current_node_count; i++) {
             if (i == current_node_count - 1) {
-                cout << setw(max_width / current_node_count) << kopiec[index] << endl;
+                cout << setw(szerokosc / current_node_count) << kopiec[index] << endl;
             } else {
-                cout << setw(max_width / current_node_count) << kopiec[index];
+                cout << setw(szerokosc / current_node_count) << kopiec[index];
             }
             index++;
 
-            if (index >= kopiec.size()) {
+            if (index >= kopiec.size()) { // wyjście z pętli
                 break;
             }
         }
-        current_level++;
-        current_node_count *= 2;
+        current_level++;  // Przejście do kolejnego poziomu kopca
+        current_node_count *= 2; // Liczba węzłów zwiększa się dwukrotnie z kazdym poziomem
+    }
+}
+
+void Kopiec_binarny::kopiec_w_ASCII2_do_srodka() {
+    cout<<endl;
+    // obliczam głębokość kopca
+    int depth = 0;
+    int num_nodes = 1;
+    while (num_nodes <= kopiec.size()) {
+        depth++;
+        num_nodes *= 2;
+    }
+
+    // Obliczam szerokość kopca
+    int width = pow(2, depth - 1);
+
+    // pętla po każdym poziomie kopca
+    for (int level = 0; level < depth; level++) {
+        // obliczam liczbę pól
+        int pola = pow(2, level);
+        // obliczam liczbę spacji polami
+        int spacje_pola = width / pola;
+        // obliczam liczbę spacji miedy poziomami
+        int spacje_poziom = spacje_pola * 2;
+
+        // Wypisuje pola na poziomie
+        for (int i = 0; i < pola; i++) {
+            int index = pow(2, level) - 1 + i;
+            if (index >= kopiec.size()) {
+                break;
+            }
+
+            //Wypisuje spacje
+            cout << string(spacje_pola, ' ') << kopiec[index] << string(spacje_pola, ' ') << string(spacje_poziom, ' ');
+        }
+        cout << endl;
     }
 }
 
