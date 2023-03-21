@@ -27,12 +27,12 @@ int main() {
         cout << "5 - Wyjście" << endl << endl;
         cout << "Wybór: ";
         cin >> opcja_poczatkowa;
-        //system("CLS");
+        system("CLS");
 
 
         switch (opcja_poczatkowa) {
             default:
-                //system("CLS");
+                system("CLS");
                 cout << "Błędna opcja 1" << endl<<endl;
                 break;
             case 1:
@@ -55,7 +55,8 @@ int main() {
                 cout << "Testy do pliku" << endl;
                 cout << "1 - Tablica Dynamiczna" << endl;
                 cout << "2 - Lista Dwukierunkowa" << endl;
-                cout << "3 - Stary_Kopiec Binarny" << endl;
+                cout << "3 - Kopiec Binarny" << endl;
+                cout << "4 - Wszystko" << endl;
                 cin >> opcja_testu;
                 switch (opcja_testu) {
                     case 1:
@@ -65,8 +66,11 @@ int main() {
                         testy.testListy();
                         continue;
                     case 3:
-                        // TODO sprawdzić czy to działa
-                        // update: Nie
+                        testy.testKopca();
+                        continue;
+                    case 4:
+                        testy.testTablicy();
+                        testy.testListy();
                         testy.testKopca();
                         continue;
                     default:

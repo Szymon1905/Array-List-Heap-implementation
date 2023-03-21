@@ -30,13 +30,13 @@ int losuj(int rozmiar) {
 // TODO elimninacja plik
 
 void Testy::testTablicy() {
-    srand(time(NULL));
     Czasomierz czas;
     Tablica tablica;
     int wartosc;
     // pliki wejściowe i wyjściowe
     string daneWyjsciowe;
     string daneWejsciowe = "wejscie_100.txt";
+
     ofstream plikWyjsciowy;
     ifstream plikWejsciowy;
 
@@ -68,6 +68,7 @@ void Testy::testTablicy() {
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     daneWyjsciowe = "dodaj_na_koniec.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
@@ -82,10 +83,12 @@ void Testy::testTablicy() {
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     daneWyjsciowe = "dodaj_na_pozycje.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     plikWejsciowy.seekg(0, std::ios::beg);
+    plikWejsciowy.clear();
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
 
@@ -96,6 +99,7 @@ void Testy::testTablicy() {
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     daneWyjsciowe = "usun_pierwszy.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
@@ -104,6 +108,7 @@ void Testy::testTablicy() {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.clear();
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         //Wypełnia tablicę wartościami
@@ -118,6 +123,7 @@ void Testy::testTablicy() {
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     daneWyjsciowe = "usun_ostatni.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
@@ -126,6 +132,7 @@ void Testy::testTablicy() {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.clear();
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
@@ -137,14 +144,16 @@ void Testy::testTablicy() {
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
-    daneWyjsciowe = "usun_na_pozycji_stare.txt";
+    daneWyjsciowe = "usun_na_pozycji.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
         tablica.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.clear();
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
@@ -156,6 +165,7 @@ void Testy::testTablicy() {
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     char sciezka_wyjscia[1024];
     if (getcwd(sciezka_wyjscia, sizeof(sciezka_wyjscia)) != nullptr) {
@@ -205,6 +215,7 @@ void Testy::testListy(){
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     daneWyjsciowe = "dodaj_na_koniec.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
@@ -219,6 +230,7 @@ void Testy::testListy(){
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     daneWyjsciowe = "dodaj_na_pozycje.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
@@ -234,6 +246,7 @@ void Testy::testListy(){
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     daneWyjsciowe = "usun_pierwszy.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
@@ -242,6 +255,7 @@ void Testy::testListy(){
         plikWejsciowy >> wartosc;
         lista.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.clear();
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
@@ -253,6 +267,7 @@ void Testy::testListy(){
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     daneWyjsciowe = "usun_ostatni.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
@@ -261,6 +276,7 @@ void Testy::testListy(){
         plikWejsciowy >> wartosc;
         lista.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.clear();
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
@@ -272,6 +288,7 @@ void Testy::testListy(){
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     daneWyjsciowe = "usun_na_pozycji_stare.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
@@ -280,6 +297,7 @@ void Testy::testListy(){
         plikWejsciowy >> wartosc;
         lista.dodaj_na_poczatek(wartosc);
     }
+    plikWejsciowy.clear();
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
@@ -291,6 +309,8 @@ void Testy::testListy(){
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
+
 
     // Piszę ścieżkę w którje zapisano plik
     char sciezka_wyjscia[1024];
@@ -345,6 +365,7 @@ void Testy::testKopca(){
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     daneWyjsciowe = "usun.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
@@ -353,6 +374,7 @@ void Testy::testKopca(){
         plikWejsciowy >> wartosc;
         kopiec.dodaj(wartosc);
     }
+    plikWejsciowy.clear();
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
@@ -364,7 +386,7 @@ void Testy::testKopca(){
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
-
+    plikWejsciowy.clear();
 
     daneWyjsciowe = "sprawdzCzyIstnieje.txt";
     plikWyjsciowy.open(daneWyjsciowe, fstream::out);
@@ -373,6 +395,7 @@ void Testy::testKopca(){
         plikWejsciowy >> wartosc;
         kopiec.dodaj(wartosc);
     }
+    plikWejsciowy.clear();
     plikWejsciowy.seekg(0, std::ios::beg);
     while (plikWejsciowy.good()) {
         plikWejsciowy >> wartosc;
@@ -384,6 +407,7 @@ void Testy::testKopca(){
         plikWyjsciowy << czas.czas_do_pliku() << " ns" << endl;
     }
     plikWyjsciowy.close();
+    plikWejsciowy.clear();
 
     char sciezka_wyjscia[1024];
     if (getcwd(sciezka_wyjscia, sizeof(sciezka_wyjscia)) != nullptr) {
@@ -393,7 +417,9 @@ void Testy::testKopca(){
         return;
     }
 
+
     plikWejsciowy.close();
+    chdir("..");
 }
 
 
