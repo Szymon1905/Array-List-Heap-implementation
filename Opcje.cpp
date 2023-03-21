@@ -181,7 +181,6 @@ void Opcje::opcje_listy() {
                 break;
 
             case 6:
-                // TODO sprawdzic czy działa poprawnie ta metoda
                 cout << "Podaj pozycję: ";
                 cin >> pozycja;
                 czas.Start();

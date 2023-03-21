@@ -11,7 +11,7 @@ void Czasomierz::Stop() {
     stop = high_resolution_clock::now();
 }
 
-// TODO poprawić metode
+
 
 // metoda mierzaca czas z użyciem high_resolution_clock z chrono
 void Czasomierz::Zmierzony_czas() {
