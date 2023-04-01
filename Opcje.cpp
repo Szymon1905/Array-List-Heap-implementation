@@ -4,7 +4,7 @@
 #include "Lista.h"
 #include "Kopiec.h"
 
-//#include "Drzewo.h"
+
 
 using namespace std;
 

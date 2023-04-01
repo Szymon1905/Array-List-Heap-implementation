@@ -20,5 +20,5 @@ public:
 
     void kopiec_w_ASCII_do_prawej();
 
-    void kopiec_w_ASCII2_do_srodka();
+    void kopiec_w_ASCII_do_srodka();
 };

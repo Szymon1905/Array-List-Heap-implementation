@@ -83,7 +83,7 @@ int main() {
 
                 // TODO wywalić case 6
             case 6:
-                // Testy kocpa
+                // Testy kopca
                 Kopiec_binarny kopiecus;
 
                 kopiecus.dodaj(10);
@@ -118,7 +118,9 @@ int main() {
 
                 kopiecus.kopiec_w_ASCII_do_prawej();
 
-                kopiecus.kopiec_w_ASCII2_do_srodka();
+                cout<<endl<<endl;
+
+                kopiecus.kopiec_w_ASCII_do_srodka();
 
                 cin>>opcja_poczatkowa;
                 return 0;

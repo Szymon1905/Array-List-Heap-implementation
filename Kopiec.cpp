@@ -106,7 +106,7 @@ void Kopiec_binarny::kopiec_w_ASCII_do_prawej() {
     }
 }
 
-void Kopiec_binarny::kopiec_w_ASCII2_do_srodka() {
+void Kopiec_binarny::kopiec_w_ASCII_do_srodka() {
     cout<<endl;
     // obliczam głębokość kopca
     int depth = 0;

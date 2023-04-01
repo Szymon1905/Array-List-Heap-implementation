@@ -1,8 +1,6 @@
 #include <iostream>
 #include <chrono>
 
-#ifndef PROJEKT_SDIZO_NR_1_SZYMON_BORZDYNSKI_CZAS_H
-#define PROJEKT_SDIZO_NR_1_SZYMON_BORZDYNSKI_CZAS_H
 
 
 using namespace std;
@@ -23,5 +21,4 @@ public:
 };
 
 
-#endif //PROJEKT_SDIZO_NR_1_SZYMON_BORZDYNSKI_CZAS_H
 
