@@ -1,3 +1,5 @@
-SDIZO-projekt nr 1 by Szymon Borzdyński
-Implmentacja Tablicy, Listy i kopca Binarnego w C++
+# Implmentacja Tablicy, Listy i kopca Binarnego w C++****
+
+
+Projekt SDIZO
 Prowadzący: Dr Zbigniew Buchalski
