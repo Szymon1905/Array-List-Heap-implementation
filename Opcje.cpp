@@ -10,7 +10,7 @@ using namespace std;
 
 
 void Opcje::opcja_tablica() {
-    Czas czas;
+    Czasomierz czas;
     Tablica tablica;
     int wybor;
     int wartosc;
@@ -31,7 +31,7 @@ void Opcje::opcja_tablica() {
         cout << endl;
         cout << "Wybór: ";
         cin >> wybor;
-        system("CLS");
+        //system("CLS");
         cout<<"Wybrano: "<<wybor<<endl;
         switch (wybor) {
             case 1:
@@ -114,7 +114,7 @@ void Opcje::opcja_tablica() {
 }
 
 void Opcje::opcje_listy() {
-    Czas czas;
+    Czasomierz czas;
     Lista lista;
     int wybor;
     int wartosc;
@@ -122,18 +122,18 @@ void Opcje::opcje_listy() {
 
     while (true) {
         cout << "Opcje listy:" << endl;
-        cout << "1 - Dodaj na początek" << endl;
-        cout << "2 - Dodaj na koniec" << endl;
-        cout << "3 - Dodaj na na wybraną pozycję" << endl;
-        cout << "4 - Usuń pierwszy" << endl;
-        cout << "5 - Usuń ostatni" << endl;
+        cout << "1 - Dodaj element na początek" << endl;
+        cout << "2 - Dodaj element na koniec" << endl;
+        cout << "3 - Dodaj element na na wybraną pozycję" << endl;
+        cout << "4 - Usuń pierwszy element" << endl;
+        cout << "5 - Usuń ostatni element" << endl;
         cout << "6 - Usuń element na wybranej pozycji" << endl;
         cout << "7 - Wyszukaj element" << endl;
         cout << "8 - Wydrukuj listę" << endl;
         cout << "9 - Wyjście" << endl << endl;
         cout << "Wybrano: ";
         cin >> wybor;
-        system("CLS");
+        //system("CLS");
 
         switch (wybor) {
 
@@ -181,6 +181,7 @@ void Opcje::opcje_listy() {
                 break;
 
             case 6:
+                // TODO sprawdzic czy działa poprawnie ta metoda
                 cout << "Podaj pozycję: ";
                 cin >> pozycja;
                 czas.Start();
@@ -216,10 +217,12 @@ void Opcje::opcje_listy() {
 }
 
 void Opcje::opcje_kopca() {
-    Czas czas;
-    Kopiec kopiec;
+    Czasomierz czas;
+    Kopiec_binarny kopiec;
     int wybor;
     int wartosc;
+
+
     while (true) {
         cout << "Opcje Kopca:" << endl;
         cout << "1 - Dodaj" << endl;
@@ -229,7 +232,7 @@ void Opcje::opcje_kopca() {
         cout << "5 - Wyjście" << endl << endl;
         cout << "Wybrano: ";
         cin >> wybor;
-        system("CLS");
+        //system("CLS");
 
         switch (wybor) {
             case 1:
@@ -245,7 +248,7 @@ void Opcje::opcje_kopca() {
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
                 czas.Start();
-                kopiec.usun(wartosc);
+                kopiec.usun_ze_szczytu();
                 czas.Stop();
                 czas.Zmierzony_czas();
                 break;
@@ -254,14 +257,14 @@ void Opcje::opcje_kopca() {
                 cout << "Podaj wartość: ";
                 cin >> wartosc;
                 czas.Start();
-                kopiec.sprawdzCzyIstnieje(wartosc);
+                kopiec.czy_istnieje(wartosc);
                 czas.Stop();
                 czas.Zmierzony_czas();
                 break;
 
             case 4:
                 czas.Start();
-                kopiec.wydrukujKopiec();
+                kopiec.wypisz_kopiec();
                 czas.Stop();
                 czas.Zmierzony_czas();
                 break;

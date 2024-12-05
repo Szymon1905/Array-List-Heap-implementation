@@ -1,7 +1,7 @@
 
 
 #include <iostream>
-#include "Czas.h"
+#include "Czasomierz.h"
 
 
 
